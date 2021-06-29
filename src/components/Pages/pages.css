@@ -1,0 +1,36 @@
+/* login page */
+
+.form-main{
+    background-color:#181818;
+    width:32%;
+    height:40vh;
+    margin:auto;
+    text-align: center;
+    margin-top:25vh;
+    padding-top:10px;
+    
+}
+
+.enter-email ,.enter-password{
+background-color:black;
+width:80%;
+height:35px;
+border:none;
+margin:auto;
+
+}
+
+.enter-email ::placeholder, .enter-password::placeholder{
+color: gray;;
+}
+
+.login-submit-remember{
+    display:flex;
+    justify-content: space-between;
+    width:80%;
+    margin:30px auto;
+    
+
+    
+
+}

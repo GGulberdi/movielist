@@ -9,35 +9,22 @@ export default function AddCategory() {
 
     
 
-    // const handleSubmit=async(e)=>{
-    // e.preventDefault()
-    // await axios.post('https://movieapp-server.herokuapp.com/categories',{
-    //     name, description, status})
-    //       .then((res)=>{
-    //         console.log(res.data)
-    //       })
-    //       .catch((err)=>console.log(err))
-    // }
-    const handleSubmit=(categoryId)=>{
-        const updatedCategory={
-            name,
-            description,
-            status
-        }
-        axios.put(`https://movieapp-server.herokuapp.com/categories/${categoryId}`,updatedCategory)
-        .then(res=>{
-            window.location.reload()
-        })
-        .catch(err=>{console.log(err)})
-      
+    const handleSubmit=async(e)=>{
+    e.preventDefault()
+    await axios.post('https://movieapp-server.herokuapp.com/categories',{
+        name, description, status})
+          .then((res)=>{
+            console.log(res.data)
+          })
+          .catch((err)=>console.log(err))
     }
-
+    
     const cancelUpload = (e) => {
         e.preventDefault()
         setName('')
         setDescription('')
-        setStatus('')
-    }
+        status('')
+  }
 
     return (
       <div className="addcategory-container">
@@ -47,12 +34,12 @@ export default function AddCategory() {
                             <input className="addcategory-name-input" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} />
                           </div>
                      <div className="addcategory-description addcategory-item">
-                            <input className="addcategory-description-input" placeholder="Description" value={description} onChange={(e)=>setDescription(e.target.value)} />
+                            <input className="addcategory-description-input" type='textarea' placeholder="Description" value={description} onChange={(e)=>setDescription(e.target.value)} />
                           </div>
                 <div className="addcategory-status">
                     <h3>Status </h3>
-                    <div className="addcategory-circle-container">
-                <select value={status} onChange={(e)=>{setStatus(e.target.value)}}>
+                     <div className="addcategory-circle-container">
+                <select value={status} onChange={(e)=>{setStatus(e.target.value)}}> 
                 <option value="enable" className="addcategory-circle">Enable</option>
                 <option value="disable" className="addcategory-circle">Disable</option>
                 </select>

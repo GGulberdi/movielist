@@ -49,6 +49,7 @@
   border-radius: 5px;
   margin: 2%;
   background-color: #000000;
+  color:azure;
 }
 .addcategory-description-input {
   width: 95%;
@@ -57,11 +58,25 @@
   border-radius: 5px;
   margin: 0 2%;
   background-color: #000000;
+  color:azure;
+  text-align: left;
+ 
 }
 .addcategory-title {
   margin: 0 0 0 2%;
   padding-top: 1%;
 }
+
+.addcategory-description-input::placeholder{
+  position: absolute;
+  top: 0px;
+  color: white;
+
+
+}
+
+
+
 .addcategory-status h3 {
   margin-left: 2%;
 }

@@ -26,7 +26,7 @@ import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
 import Recover from './components/Pages/Recover';
 import Confirm from './components/Pages/Confirm';
-import Contact from './components/Pages/Contact';
+import Contact from './components/Pages/contact/Contact';
 import About from './components/Pages/About';
 import Faq from './components/Pages/Faq';
 

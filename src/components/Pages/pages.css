@@ -1,5 +1,26 @@
-/* login page */
+/*pages dropdown*/
+.pages , .authentication{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+.pages-icon-down {
+    margin-left: 1000%;
+    margin-top: 50%;
+    font-size: 18px;
+}
 
+
+.pages-icon-right {
+    margin-left: 800%;
+    margin-top: 50%;
+    font-size: 18px;
+}
+
+
+
+
+/* login page */
 .form-main{
     background-color:#181818;
     width:32%;
@@ -11,16 +32,17 @@
     
 }
 
-.enter-email ,.enter-password, .enter-name, .reenter-password{
+.enter-email ,.enter-password, .enter-firstname, .enter-lastname, .confirm-password{
 background-color:black;
 width:80%;
 height:35px;
 border:none;
 margin:auto;
+color:white;
 
 }
 
-.enter-email::placeholder, .enter-password::placeholder, .enter-name::placeholder, .reenter-password::placeholder{
+.enter-email::placeholder, .enter-password::placeholder, .enter-firstname::placeholder,.enter-lastname::placeholder, .confirm-password::placeholder{
 color: gray;;
 }
 

@@ -29,6 +29,7 @@ import Confirm from './components/Pages/Confirm';
 import Contact from './components/Pages/contact/Contact';
 import About from './components/Pages/About';
 import Faq from './components/Pages/Faq';
+import CommentDetails from './components/Comments/CommentDetails';
 
 function App() {
 
@@ -86,6 +87,10 @@ function App() {
 				<Route
 				  exact path="/commentlist"
 				  render={() => <Comments comments={comments}/>}
+				/>
+				<Route
+				  exact path="/commentdetails/:id"
+				  render={() => <CommentDetails />}
 				/>
 				<Route
 				  exact path="/ratings"

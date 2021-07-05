@@ -38,7 +38,6 @@ export default function Trailers() {
 
 
 
-
     const handleSubmit=(trailerId)=>{
         const updatedTrailer={
             title,
@@ -84,6 +83,7 @@ export default function Trailers() {
             setCast(res.data.cast)
             setTags(res.data.tags)
             setGenre(res.data.genre)
+            console.log(year)
         })
         .catch((err) => {
             console.log(err);
@@ -111,7 +111,7 @@ export default function Trailers() {
         axios
 			.get('https://movieapp-server.herokuapp.com/trailers')
 			.then((res) => {
-				setData(res.data);
+				setData(res.data.response);
 			})
 			.catch((err) => {
 				console.log(err);

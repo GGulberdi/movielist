@@ -1,6 +1,8 @@
 .commentlist-container {
   background-color: #181818;
-  margin: 10%;
+  margin: 0;
+  width:100%;
+  background-color: lightcoral;
 }
 .commentlist-title {
   margin-left: 2%;
@@ -52,14 +54,24 @@
   outline: none;
   box-shadow: none;
 }
+.outer{
+  background-color: lawngreen;
+  width: 80%;
+  margin: 10%;
+  position: absolute;
 
+}
 table {
   border-collapse: separate;
   border-spacing: 0px 15px;
   width: 80%;
   margin-left: 10%;
+  margin:auto;
   background-color: #181818;
-  font-size: 20px;
+  font-size: inherit;
+  /* font-size: 20px; */
+  /* position: absolute; */
+
   color: white;
 }
 .row-icon-container {
@@ -69,6 +81,7 @@ table {
   /* margin-top: 45%; */
   height: 105px;
   background-color: #101010;
+  width: fit-content;
 }
 .comments-icon-container {
   display: flex;
@@ -120,7 +133,11 @@ table {
 table td,
 table th {
   background-color: #101010;
-  padding: 20px;
+  /* color: yellow; */
+  overflow-x: hidden;
+
+  /* padding: 20px; */
+
 }
 
 table th {
@@ -130,3 +147,41 @@ table th {
   background-color: #181818;
   color: grey;
 }
+
+.blockMessage{
+  width: 95%;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  margin: 2%;
+  background-color: #000000;
+  color: white;
+}
+
+
+
+/* ty{
+  color:yellow;
+  width: 100%
+} */
+
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+  .commentlist-container{width:80%; margin:auto;}  
+  table{width:80%; margin:auto;}  
+  /* STYLES GO HERE */
+}
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+
+  .commentlist-container{width:80%; margin:auto;} 
+  table{width:80%; margin:auto;}  
+
+/* STYLES GO HERE */
+}
+

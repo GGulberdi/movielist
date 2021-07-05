@@ -20,3 +20,7 @@
 .footer-right span {
   color: red;
 }
+
+.footer-container {
+  margin-top: 100px;
+}

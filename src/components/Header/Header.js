@@ -151,8 +151,8 @@ const openCategoryDropdown=()=>{
                     </div>
 
                     <div className={pagesClassname}>
-                    <div> <RiPagesLine/> Authentication </div>
-                       <div>
+                    <div > <RiPagesLine/> Authentication </div>
+                       <div className='authentication'>
                          <BsChevronRight className={authenticationArrowRight} onClick={openAuthenticationDropdown}/>
                          <BsChevronDown className={authenticationArrowDown} onClick={closeAuthenticationDropdown}/>
                        </div> 

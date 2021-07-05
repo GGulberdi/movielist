@@ -83,7 +83,7 @@ export default function Rating() {
     axios
       .get('https://movieapp-server.herokuapp.com/trailers')
       .then((res) => {
-        setData(res.data);
+        setData(res.data.response);
       })
       .catch((err) => {
         console.log(err);

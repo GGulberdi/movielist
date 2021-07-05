@@ -27,6 +27,7 @@ export default function Users() {
     const [country,setCountry]=useState('');
     const [createdAt,setCreatedAt]=useState('');
     const [isActive,setIsActive]=useState(true);
+    console.log(firstname)
 
 
     // const viewUserDetail=(userId)=>{
@@ -94,7 +95,7 @@ export default function Users() {
         axios
 			.get('https://movieapp-server.herokuapp.com/users')
 			.then((res) => {
-				setData(res.data);
+				setData(res.data.data);
 			})
 			.catch((err) => {
 				console.log(err);

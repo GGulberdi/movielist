@@ -4,8 +4,8 @@ export const COLUMNS = [
     {
         Header:"PROFILE",
         accessor:"profileImageId",
-        Cell: ({row})=>{       
-        return <img src={row.original.profileImageId.url} alt="profile_img" style={{width:"100px",height:"100px"}}></img>}
+        // Cell: ({row})=>{       
+        // return <img src={row.original.mediaId.url} alt="profile_img" style={{width:"100px",height:"100px"}}></img>}
     },
     {
         Header:"NAME",

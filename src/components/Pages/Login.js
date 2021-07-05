@@ -9,40 +9,42 @@ import axios from 'axios';
 // import { setUserSession } from './Utils/Common';
 
 function Login(props) {
-    const [loading, setLoading] = useState(false);
-    // const username = useFormInput('');
-    // const password = useFormInput('');
+    const [isLogged, setIsLogged] = useState(false);
+     const [username, setUsername] = useState('');
+     const [password , setPassword]=useState('');
     const [error, setError] = useState(null);
 
     // handle button click of login form
-    //   const handleLogin = () => {
-    //     setError(null);
-    //     setLoading(true);
-    //     axios.post('http://localhost:4000/users/signin', { username: username.value, password: password.value }).then(response => {
-    //       setLoading(false);
-    //       setUserSession(response.data.token, response.data.user);
-    //       props.history.push('/dashboard');
-    //     }).catch(error => {
-    //       setLoading(false);
-    //       if (error.response.status === 401) setError(error.response.data.message);
-    //       else setError("Something went wrong. Please try again later.");
-    //     });
-    //   }
+      
+    const handleLogin = () => {
+        setError(null);
+        setIsLogged(true);
+        axios.post('https://movieapp-server.herokuapp.com/users', { email: username.value, password: password.value })
+        .then(response => {
+         setIsLogged(false);
+         props.history.push('/dashboard');
+         alert('you are succesfully logged in')
+        }).catch(error => {
+          setIsLogged(false);
+          if (error.response.status === 401) setError(error.response.data.message);
+          else setError("Something went wrong. Please try again later.");
+        });
+      }
 
     return (
         <div className='form-main'>
             <h2>Sign in </h2>
             <div className='enter-email'>
                 {/* <input className='enter-email' type="text" {...username} autoComplete="new-password" placeholder='Enter email' /> */}
-                <input className='enter-email' type="text"  autoComplete="new-password" placeholder='Enter email' />
+                <input className='enter-email' type="text"  value={username}  onChange={(e)=>setUsername(e.target.value)} autoComplete="new-password" placeholder='Enter email' />
             </div>
             <div style={{ marginTop: 10 }}>
                 {/* <input className='enter-password' type="password" {...password} autoComplete="new-password" placeholder='Password'/> */}
-                <input className='enter-password' type="password"  autoComplete="new-password" placeholder='Password'/>
+                <input className='enter-password' type="password"  value ={password}  onChange={(e)=>setPassword(e.target.value)} autoComplete="new-password" placeholder='Password'/>
 
             </div>
             <div  className='login-submit-remember'>
-            <input type="button" value={loading ? 'Loading...' : 'Sign in'} /><br />
+            <input type="button" value={isLogged ? 'Loading...' : 'Sign in'} /><br />
             <div>
             <input type="checkbox" id="remember-me" name="rememberMe" value="rememberMe" />
             <label for="rememberMe"> Remember Me</label><br />

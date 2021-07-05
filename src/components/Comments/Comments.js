@@ -11,37 +11,53 @@ import { BsFillEyeFill, BsPencilSquare, BsFillTrashFill } from "react-icons/bs";
 import Modal from "react-modal";
 import { COLUMNS } from "./CommentsColumns";
 import "./commentsTable.css";
+import {Link} from 'react-router-dom'
+import { GiConsoleController } from "react-icons/gi";
+import { formatDistanceToNow } from "date-fns";
 // import ReactImage from "react-image";
-// import './comments.css'
+import './commentsTable.css'
 
 Modal.setAppElement("#root");
 export default function Comments() {
   const [data, setData] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalPost, setModalPost] = useState("");
-  const [no, setNo] = useState("");
+  // const [no, setNo] = useState("");
   const [authorFirstname, setAuthorFirstname] = useState("");
   const [authorLastname, setAuthorLastname] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [createdAt, setCreatedAt] = useState("");
   const [isActive, setIsActive] = useState(true);
-
-  console.log(authorFirstname)
-
+  const [userId , setUserId]=useState('')
+  const [block, setBlock]=useState(false)
+  const [reasonBlock, setReasonBlock]=useState('')
+  console.log(reasonBlock)
+  
   const viewCommentDetail = (commentId) => {
-    console.log(commentId);
+    console.log(data);
   };
+
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.value);
+    if (e.target.value === "false") {
+      setBlock(true);
+    } else{
+      setBlock('')
+    }
+    setIsActive(e.target.value)
+  };
+
+
+
   const handleSubmit = (commentId) => {
     const updatedComment = {
-      no,
-      authorFirstname,
-      authorLastname,
-      title,
-      description,
-      createdAt,
       isActive,
+     reasonToBlock:reasonBlock,
     };
+  
     axios
       .put(
         `https://movieapp-server.herokuapp.com/comments/${commentId}`,
@@ -49,34 +65,41 @@ export default function Comments() {
       )
       .then((res) => {
         window.location.reload();
-      })
+     })
       .catch((err) => {
         console.log(err);
       });
+     
   };
 
-  console.log(data.userId)
+
+
+ 
   const editComment = async (commentId) => {
     await axios
       .get(`https://movieapp-server.herokuapp.com/comments/${commentId}`)
       .then((res) => {
-        setModalPost(res.data);
-        setNo(res.data.no);
-        setAuthorFirstname(res.data.userId.firstname);
-        setAuthorLastname(res.data.userId.lastname);
-        setTitle(res.data.title);
-        setDescription(res.data.content);
-        setCreatedAt(res.data.createdAt);
-        setIsActive(res.data.isActive);
-        
-        // setProfileImageId(res.data.profileImageId)
+        setModalPost(res.data.data);
+        // setNo(res.data.data.no);
+        setAuthorFirstname(res.data.data.userId.firstname);
+        setAuthorLastname(res.data.data.userId.lastname);
+        setTitle(res.data.data.title);
+        setDescription(res.data.data.content);
+        setCreatedAt(res.data.data.createdAt);
+        setIsActive(res.data.data.isActive);
+        setUserId(res.data.data.userId._id)
+        setReasonBlock(res.data.data.reasonToBlock)
+        console.log(res.data.data.reasonToBlock)
       })
       .catch((err) => {
         console.log(err);
       });
 
     setModalIsOpen(true);
+  
   };
+
+
 
   const deleteComment = (commentId) => {
     axios
@@ -93,12 +116,14 @@ export default function Comments() {
     axios
       .get("https://movieapp-server.herokuapp.com/comments")
       .then((res) => {
-        setData(res.data);
+        setData(res.data.response)
+        
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  
 
   const columns = useMemo(() => COLUMNS, []);
   const comments = useMemo(() => data, []);
@@ -137,7 +162,7 @@ export default function Comments() {
   const { globalFilter, pageIndex, pageSize } = state;
 
   return (
-    <div>
+    <div className="outer">
       <div>
         <Modal
           isOpen={modalIsOpen}
@@ -178,21 +203,22 @@ export default function Comments() {
                     <p>
                       {authorFirstname} {authorLastname}
                     </p>
-                    {console.log(authorFirstname)}
-                    <p>{title}</p>
+                  
+                    <p>{data.title}</p>
                     <p>{description}</p>
                     <p>{createdAt}</p>
                     <select
                       value={isActive}
-                      onChange={(e) => {
-                        setIsActive(e.target.value);
-                      }}
+                      onChange={handleChange}
                     >
                       <option value="true">Active</option>
-                      <option value="false">Block</option>
-                    </select>
+                      <option value="false">Block</option> 
+                      </select>
+
                   </div>
                 </div>
+
+
                 <div className="comment-update-button-container">
                   <button
                     className="comment-update-button submit-btn"
@@ -200,6 +226,8 @@ export default function Comments() {
                   >
                     Submit
                   </button>
+                {block? <input className='blockMessage' value={reasonBlock} type='text' onChange={(e)=>setReasonBlock(e.target.value)} placeholder={'Send block reason message'}/>:"" }
+                  
                 </div>
               </div>
             </form>
@@ -268,18 +296,22 @@ export default function Comments() {
                     );
                   })}
                   <td className="row-icon-container">
-                    <BsFillEyeFill
+                    {/* <BsFillEyeFill
                       className="view-comment-icon"
                       onClick={() => {
                         viewCommentDetail(row.original._id);
                       }}
-                    />
+                    /> */}
+                    <Link  to={`/commentdetails/${row.original._id}`}>
+                    <BsFillEyeFill className="view-trailer-icon eyefill-icon" />&nbsp; 
+                    </Link>
                     &nbsp;
                     <BsPencilSquare
                       className="edit-comment-icon"
                       onClick={() => {
                         editComment(row.original._id);
                       }}
+                      
                     />
                     &nbsp;
                     <BsFillTrashFill

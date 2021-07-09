@@ -3,6 +3,7 @@
   margin: 0;
   width:100%;
   background-color: lightcoral;
+  overflow-x: auto !important;
 }
 .commentlist-title {
   margin-left: 2%;
@@ -58,7 +59,7 @@
   background-color: lawngreen;
   width: 80%;
   margin: 10%;
-  position: absolute;
+  /* position: absolute; */
 
 }
 table {
@@ -69,6 +70,9 @@ table {
   margin:auto;
   background-color: #181818;
   font-size: inherit;
+  overflow-x: auto !important;
+
+
   /* font-size: 20px; */
   /* position: absolute; */
 
@@ -157,8 +161,32 @@ table th {
   background-color: #000000;
   color: white;
 }
+.block-reason input{
+  margin:0;
+  padding:0;
+  
+}
 
+.block-reason {
+  margin:50px 0;
+  
+  
+}
 
+.modal-column-two{
+  margin-left:2%;
+  font-size: 2rem;
+}
+
+.comment-update-button-container{
+  text-align: center;
+}
+
+.submit-btn{
+  width:10%;
+  height: 50px;
+  font-size: 2rem;
+}
 
 /* ty{
   color:yellow;

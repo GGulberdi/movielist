@@ -23,6 +23,7 @@ import { BsFillEyeFill, BsPencilSquare, BsFillTrashFill } from "react-icons/bs";
 import Modal from 'react-modal';
 import './ratings.css'
 import { Row } from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 
 
 Modal.setAppElement('#root');
@@ -55,6 +56,8 @@ export default function Rating() {
     {
       Header: 'DESCRIPTION',
       accessor: 'description',
+      Cell:({row})=>{
+        return <span>{row.original.description && row.original.description.slice(0,40)}...</span>  }
     },
     {
       Header: 'Releasy DATE',
@@ -258,8 +261,10 @@ export default function Rating() {
                       return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     })}
                     <td role='cell' className="row-icon-container">
-                      {/* <BsFillEyeFill className="view-trailer-icon" onClick={() => { viewTrailerDetail(row.original._id) }} />&nbsp; */}
-                      <BsPencilSquare className="edit-trailer-icon" onClick={() => { editTrailer(row.original._id) }} />&nbsp;
+                     <Link  to={`/ratingdetails/${row.original._id}`}>
+                      <BsFillEyeFill className="view-trailer-icon" onClick={() => { viewTrailerDetail(row.original._id) }} />&nbsp;
+                      </Link>
+                      {/* <BsPencilSquare className="edit-trailer-icon" onClick={() => { editTrailer(row.original._id) }} />&nbsp; */}
                       <BsFillTrashFill className="delete-trailer-icon" onClick={() => { deleteComment(row.original._id) }} />
                     </td>
 

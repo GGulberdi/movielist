@@ -176,10 +176,7 @@ export default function Trailers() {
                         margin:"auto",
                         paddingTop:"2%",
                         paddingBottom:"2%"
-
-                        
-                        
-					},
+        			},
 				}}
 			>
 				<div className="modal-container">

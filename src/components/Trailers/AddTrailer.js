@@ -175,8 +175,6 @@ export default function AddTrailer() {
                 </div>
                 
                 <div>{isLoading ? <p className="loading-text" >Uploading the movie trailer...</p>:null }</div>
-              
-​
               </div>
             </div>
             

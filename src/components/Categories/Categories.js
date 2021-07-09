@@ -24,19 +24,23 @@ export default function Categories() {
     const [description,setDescription]=useState('')
     const [movie,setMovie]=useState()
 
+    console.log(movie)
     
 
     const handleSubmit=(categoryId)=>{
+        console.log(categoryId)
         const updatedCategory={
             // number,
             name,
-            description,
+            description
             // movie
             
         }
         axios.put(`https://movieapp-server.herokuapp.com/categories/${categoryId}`,updatedCategory)
         .then(res=>{
+            console.log(res)
             window.location.reload()
+
         })
         .catch(err=>{console.log(err)})
     }
@@ -147,7 +151,7 @@ export default function Categories() {
                         marginTop:"10px",
                         backgroundColor: '#181818',
                         border:"none",
-                        width:"95%",
+                        width:"70%",
                         margin:"auto",
                         paddingTop:"2%",
                         paddingBottom:"2%"
@@ -160,8 +164,7 @@ export default function Categories() {
 				<div className="modal-container">
                         <p className="close-modal-x" onClick={() => setModalIsOpen(false)}>X</p>
                         <form onSubmit={(e)=>{e.preventDefault();handleSubmit(modalPost._id)}} className="modal-form">
-                            <div className="modal-column-one">
-                            </div>
+                                 
                             <div className="modal-column-two">
                                 <div>
                                     {/* <div className="modal-number-container form-item">

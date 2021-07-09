@@ -96,3 +96,20 @@
   border-radius: 5px;
   color: white;
 }
+
+.modal-name-container,  .modal-description-container{
+  margin-bottom: 20px;
+}
+
+.category-update-button-container{
+  margin-top:50px;
+  text-align: center;
+}
+
+.category-update-button{
+  width: 50%;
+}
+
+.modal-name-container input, .modal-description-container textarea{
+  font-size: 1.2rem;
+}

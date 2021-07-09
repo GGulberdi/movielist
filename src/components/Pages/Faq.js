@@ -45,7 +45,7 @@ export default function Faq() {
     axios
       .get('https://movieapp-server.herokuapp.com/faqs')
       .then((res) => {
-        setData(res.data);
+        setData(res.data.response);
       })
       .catch((err) => {
         console.log(err);

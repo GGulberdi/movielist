@@ -1,6 +1,6 @@
 // https://www.cluemediator.com/login-app-create-login-form-in-reactjs-using-secure-rest-api
 
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { Form, Button } from 'react-bootstrap';
 import './pages.css'
 import { Link } from 'react-router-dom';
@@ -8,43 +8,85 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 // import { setUserSession } from './Utils/Common';
 
+const loginData={
+
+    email:'sinetrail2021@gmail.com',
+    password:'#Sinetrail2021',
+    role:'admin'
+}
+
+
 function Login(props) {
     const [isLogged, setIsLogged] = useState(false);
-     const [username, setUsername] = useState('');
      const [password , setPassword]=useState('');
+     const [email, setEmail]= useState('');
     const [error, setError] = useState(null);
+    const [data, setData] = useState([]);
+    const [auth, setAuth] = useState('');
+console.log(email)
+console.log(auth)
 
-    // handle button click of login form
-      
-    const handleLogin = () => {
-        setError(null);
-        setIsLogged(true);
-        axios.post('https://movieapp-server.herokuapp.com/users', { email: username.value, password: password.value })
-        .then(response => {
-         setIsLogged(false);
-         props.history.push('/dashboard');
-         alert('you are succesfully logged in')
-        }).catch(error => {
-          setIsLogged(false);
-          if (error.response.status === 401) setError(error.response.data.message);
-          else setError("Something went wrong. Please try again later.");
-        });
-      }
+useEffect(()=>{
 
+    const config={
+        headers:{
+            Authorization:'Bearer' + localStorage.getItem('token')
+
+        }
+    }
+     axios.get('https://movieapp-server.herokuapp.com/users', config)
+.then(response => {
+    setData(response.data.data)
+    localStorage.setItem('token', response.token)
+    // console.log(data)
+})
+.catch(error => {
+  setIsLogged(false);
+  if (error.response.status === 401) setError(error.response.data.message);
+  else setError("Something went wrong. Please try again later.");
+});// handle button click of login form
+},[])
+
+
+
+
+const handleSignin= (e)=>{
+    e.preventDefault()
+   setIsLogged(true);
+
+// console.log(data)
+    // let data1=data.length;
+    for (let i=0; i<data.length; i++){
+        if(data.email===email && data.password===password && data.role==='admin'){
+            setAuth('logged In')
+        }else {setAuth('wrong username or password')}
+   }
+   setPassword('');
+   setEmail('');
+    //   setIsLogged(false);
+//  props.history.push('/dashboard');
+//  alert('you are succesfully logged in')
+  
+}
+
+    
     return (
         <div className='form-main'>
             <h2>Sign in </h2>
+            <form type='submit'>
             <div className='enter-email'>
                 {/* <input className='enter-email' type="text" {...username} autoComplete="new-password" placeholder='Enter email' /> */}
-                <input className='enter-email' type="text"  value={username}  onChange={(e)=>setUsername(e.target.value)} autoComplete="new-password" placeholder='Enter email' />
+                <input className='enter-email' type="email"  value={email}  onChange={(e)=>setEmail(e.target.value)} autoComplete="new-password" placeholder='Enter email' />
             </div>
             <div style={{ marginTop: 10 }}>
                 {/* <input className='enter-password' type="password" {...password} autoComplete="new-password" placeholder='Password'/> */}
                 <input className='enter-password' type="password"  value ={password}  onChange={(e)=>setPassword(e.target.value)} autoComplete="new-password" placeholder='Password'/>
 
             </div>
+            
+            <input   type='button' onClick={handleSignin} value={isLogged ? 'Loading...' : 'Sign in'} /><br />
+</form>
             <div  className='login-submit-remember'>
-            <input type="button" value={isLogged ? 'Loading...' : 'Sign in'} /><br />
             <div>
             <input type="checkbox" id="remember-me" name="rememberMe" value="rememberMe" />
             <label for="rememberMe"> Remember Me</label><br />
@@ -76,7 +118,9 @@ export default Login;
 
 
 
+// useEffect(()=>{
 
+// })
 
 
 //utils/Common.js
@@ -241,7 +285,6 @@ export default Login;
 // }
 
 // export default App;
-
 
 
 

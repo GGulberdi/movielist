@@ -175,11 +175,11 @@ export default function Comments() {
             },
             content: {
               padding: 2,
-              height: 500,
+              height: 700,
               marginTop: "10px",
               backgroundColor: "#181818",
               border: "none",
-              width: "95%",
+              width: "70%",
               margin: "auto",
               paddingTop: "2%",
             },
@@ -196,7 +196,6 @@ export default function Comments() {
               }}
               className="modal-form"
             >
-              <div className="modal-column-one"></div>
               <div className="modal-column-two">
                 <div>
                   <div>
@@ -207,7 +206,7 @@ export default function Comments() {
                     <p>{data.title}</p>
                     <p>{description}</p>
                     <p>{createdAt}</p>
-                    <select
+                    <select style={{width:'7%' , height:'25px', fontSize:'1.3rem'}}
                       value={isActive}
                       onChange={handleChange}
                     >
@@ -219,6 +218,9 @@ export default function Comments() {
                 </div>
 
 
+                
+                {block? <div className='block-reason'><label> Reason block message</label><input className='blockMessage' value={reasonBlock} type='text' onChange={(e)=>setReasonBlock(e.target.value)}/></div>:"" }
+                  
                 <div className="comment-update-button-container">
                   <button
                     className="comment-update-button submit-btn"
@@ -226,8 +228,6 @@ export default function Comments() {
                   >
                     Submit
                   </button>
-                {block? <input className='blockMessage' value={reasonBlock} type='text' onChange={(e)=>setReasonBlock(e.target.value)} placeholder={'Send block reason message'}/>:"" }
-                  
                 </div>
               </div>
             </form>
@@ -242,7 +242,7 @@ export default function Comments() {
         <div className="search-show-bar-container">
           <div className="comment-show-bar">
             Show&nbsp;{" "}
-            <select
+            <select 
               value={pageSize}
               onChange={(e) => setPageSize(Number(e.target.value))}
             >

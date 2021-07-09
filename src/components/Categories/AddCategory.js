@@ -1,4 +1,5 @@
 import React, { useState }from 'react'
+import { useHistory } from 'react-router-dom';
 import './categories.css'
 import axios from 'axios'
 
@@ -6,6 +7,7 @@ export default function AddCategory() {
     const [name,setName]=useState('')
     const [status,setStatus]=useState('')
     const [description,setDescription]=useState('')
+    const history = useHistory()
 
     
 
@@ -17,6 +19,7 @@ export default function AddCategory() {
             console.log(res.data)
           })
           .catch((err)=>console.log(err))
+          history.push('/categories')
     }
     
     const cancelUpload = (e) => {

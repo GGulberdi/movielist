@@ -56,3 +56,16 @@ color: gray;;
     
 
 }
+
+
+/*contact page css*/
+
+
+.contact-container{
+    margin: 5%;
+    max-width: 90%;
+    background-color: #181818;
+    padding:50px;
+    text-align: center;
+
+}

@@ -1,19 +1,19 @@
 body {
   box-sizing: border-box;
   margin: 0;
-  background-color: #101010;
-  color: white;
+  background-color: #101010 !important; 
+  color: white !important;
 }
 /* .app {
   background-color: #000000;
 } */
 a {
   text-decoration: none;
-  color: white;
+  color: white !important;
 }
 
 ::placeholder {
-  color: white;
+  color: white !important;
   opacity: 1; /* Firefox */
   padding-left: 1%;
   font-size: 20px;

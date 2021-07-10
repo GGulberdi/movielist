@@ -39,40 +39,7 @@ function App() {
   const [comments,setComments]=useState([]);
   const [trailers, setTrailers] = useState([]);
   
-  // useEffect(() => {
-	// 	axios
-	// 		.get('https://movieapp-server.herokuapp.com/users')
-	// 		.then((res) => {
-	// 			setUsers(res.data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
-  // useEffect(() => {
-	// 	axios
-	// 		.get('https://movieapp-server.herokuapp.com/comments')
-	// 		.then((res) => {
-	// 			// console.log(res.data)
-	// 			setComments(res.data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
-	// useEffect(() => {
-	// 	axios
-	// 		.get('https://movieapp-server.herokuapp.com/trailers')
-	// 		.then((res) => {
-	// 			setTrailers(res.data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
+  
   return (
     <div className="app">
 		<Router>

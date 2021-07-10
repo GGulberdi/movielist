@@ -35,6 +35,8 @@ export default function Trailers() {
     const [genre,setGenre]=useState('')
     const [tags,setTags]=useState('')
 
+    
+
 
 
 
@@ -52,7 +54,10 @@ export default function Trailers() {
             totalSeasons,
             seasonNumber,
             episodeNumber,
-            trailerUrl
+            trailerUrl,
+            cast, 
+            genre,
+            tags
         }
         axios.put(`https://movieapp-server.herokuapp.com/trailers/${trailerId}`,updatedTrailer)
         .then(res=>{
@@ -234,15 +239,15 @@ export default function Trailers() {
                                     </div>
                                     <div className="modal-cast-container form-item">
                                         <label>Cast</label>
-                                        <input value={cast && cast.map(item=>item)} onChange={(e)=>{setCast(e.target.value)}}/>
+                                        <input value={cast && cast.map(item=>item)} onChange={(e)=>{setCast(e.target.value.split(','))}}/>
                                     </div>
                                     <div className="modal-genre-container form-item">
                                         <label>Genre</label>
-                                        <input value={genre && genre.map(item=>item)} onChange={(e)=>{setGenre(e.target.value)}}/>
+                                        <input value={genre && genre.map(item=>item)} onChange={(e)=>{setGenre(e.target.value.split(','))}}/>
                                     </div>
                                     <div className="modal-tags-container form-item">
                                         <label>Tags</label>
-                                        <input value={tags && tags.map(item=>item)} onChange={(e)=>{setTags(e.target.value)}}/>
+                                        <input value={tags && tags.map(item=>item)} onChange={(e)=>{setTags(e.target.value.split(','))}}/>
                                     </div>
                                     <div className="modal-group-container additional-info-items">
                                         <div className="modal-type-container form-item">

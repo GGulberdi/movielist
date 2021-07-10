@@ -26,11 +26,21 @@ export default function AddTrailer() {
   const[isLoading,setIsLoading]=useState(false)
   const[altImage,setAltImage]=useState('')
   const[altBanner,setAltBanner]=useState('')
+  const [number,setNumber]=useState([1])
+  const [watchMovieTitle,setwatchMovieTitle]=useState('')
+  const [watchMovieLink,setwatchMovieLink]=useState('')
+  const [watchMovie,setWatchMovie]=useState([])
 
   const history = useHistory()
 
 
-
+const addMore = ()=>{
+    setNumber(number => [...number, 1])
+  } 
+  const addSite=(e)=>{
+    e.preventDefault()
+      setWatchMovie(watchMovie => [...watchMovie , {title:watchMovieTitle,link:watchMovieLink}]) 
+  }
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -69,6 +79,9 @@ export default function AddTrailer() {
       formData.append('genre', genre)
       formData.append('altImage', altImage)
       formData.append('altBanner', altBanner)
+      watchMovie.map(item=>{
+        return formData.append('websiteId',JSON.stringify(item) )
+      })
 
       await axios.post('http://movieapp-server.herokuapp.com/trailers', formData )
         .then((res) => {
@@ -99,6 +112,18 @@ export default function AddTrailer() {
   }
   return (
     <div className="addtrailer-container">
+<div>
+                 {number.map((item)=>{
+                   return <form onSubmit={addSite}>
+                    
+                          <input onChange={(e)=>setwatchMovieTitle(e.target.value)} placeholder="title" style={{height:"20px",width:"500px",backgroundColor:"black",color:"white"}}/>
+                          <input onChange={(e)=>setwatchMovieLink(e.target.value)}   placeholder="link" style={{height:"20px",width:"500px",backgroundColor:"black",color:"white"}}/>
+                          <button type="submit">add</button>
+                     </form>
+                 })}
+                 <button onClick={addMore}>Add More</button>
+      </div>
+
       <form className="addtrailer-form-container" onSubmit={handleSubmit}>
         <div className="addtrailer-title-text">
           <h1>Add Trailer</h1>

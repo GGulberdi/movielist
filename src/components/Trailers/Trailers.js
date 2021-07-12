@@ -88,7 +88,7 @@ export default function Trailers() {
             setCast(res.data.cast)
             setTags(res.data.tags)
             setGenre(res.data.genre)
-            console.log(year)
+            // console.log(res.data.bannerId.url)
         })
         .catch((err) => {
             console.log(err);
@@ -117,6 +117,8 @@ export default function Trailers() {
 			.get('https://movieapp-server.herokuapp.com/trailers')
 			.then((res) => {
 				setData(res.data.response);
+            console.log(res.data.response)
+
 			})
 			.catch((err) => {
 				console.log(err);
@@ -243,7 +245,7 @@ export default function Trailers() {
                                     </div>
                                     <div className="modal-genre-container form-item">
                                         <label>Genre</label>
-                                        <input value={genre && genre.map(item=>item)} onChange={(e)=>{setGenre(e.target.value.split(','))}}/>
+                                        <input value={genre && genre.map(item=>item.name)} onChange={(e)=>{setGenre(e.target.value.split(','))}}/>
                                     </div>
                                     <div className="modal-tags-container form-item">
                                         <label>Tags</label>

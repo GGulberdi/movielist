@@ -16,7 +16,8 @@ const [lastname, setLastname]=useState('');
 const [email, setEmail]=useState('');
 const [phoneNumber, setPhoneNumber]=useState('');
 const [content, setContent]=useState('');
-const [subject, setSubject]=useState('')
+const [subject, setSubject]=useState('');
+const [adminId, setAdminId]= useState('60e3f32b8413970015891836');
 
 
 
@@ -55,6 +56,20 @@ const handleSubmit = async (e) => {
       })
       .catch((err) => console.log(err))
 
+      const formDataNotifications = new FormData()
+     
+
+      formDataNotifications.append('userId', adminId)
+      formDataNotifications.append('content', content)
+      formDataNotifications.append('title', subject)
+
+      await axios.post('http://movieapp-server.herokuapp.com/notifications', formDataNotifications )
+      .then((res) => {
+        console.log(res)
+       
+        
+      })
+      .catch((err) => console.log(err))
  
 }
 

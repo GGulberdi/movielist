@@ -5,11 +5,20 @@ import { GiHamburgerMenu, GiFiles } from "react-icons/gi";
 import { RiPagesLine, RiLoginCircleLine, RiRecordMailLine, RiFileCodeLine, RiPantoneLine, RiContactsBookLine } from "react-icons/ri";
 import { FcAbout } from "react-icons/fc";
 import { FaQuestionCircle } from "react-icons/fa";
-import { BsFillPersonPlusFill,BsFillEyeFill,BsFillHouseDoorFill,BsFillStarFill,BsChatFill,BsFillPeopleFill,BsCardList,BsFilm,BsChevronRight,BsChevronDown } from "react-icons/bs";
-
+import { BsFillPersonPlusFill,BsFillEyeFill,BsFillHouseDoorFill,BsFillStarFill,BsChatFill,BsFillPeopleFill,BsCardList,BsFilm,BsChevronRight,BsChevronDown,BsEnvelope } from "react-icons/bs";
+import {IoNotificationsOutline} from 'react-icons/io5'
+import {Link} from 'react-router-dom';
+import Modal from 'react-modal';
 
 export default function Header() {
+    const [modalIsOpen, setModalIsOpen] = useState(false); 
+    const [modalPost,setModalPost]=useState('')
 
+    const handleClick=(e)=>{
+        // e.preventDefault
+        console.log('clicked')
+        setModalIsOpen(true)
+    }
   const[classname,setClassname]=useState('header-not-visible')
   const[categoryClassname,setCategoryClassname]=useState('dropdown-closed')
   const[trailerClassname,setTrailerClassname]=useState('dropdown-closed')
@@ -176,26 +185,57 @@ const openCategoryDropdown=()=>{
                         <div className="dropdown-item"> <FaQuestionCircle/> <a href="/faq">FAQ</a></div>
                         
                        </div> 
-
-            
-                    </div>  
-                    
-                </div>
-
-
+                   </div>  
+               </div>
             </div>
             <div className="header-logo">
                 <div className="menu" onClick={toggleMenu2}><GiHamburgerMenu/></div>
                 <div><img src={logo} alt="logo"/></div>
                 <div>ineTrail</div>
             </div>
+            <div style={{display:'flex', justifyContent:'space-between'}}>
+           {/* <Link to='/notifications' style={{margin:'auto 20px'}} ><IoNotificationsOutline type='button' size ='30' /></Link> */}
+      <IoNotificationsOutline type='button' size ='30' style={{margin:'auto 20px'}} onClick={handleClick}/>
+
+           <BsEnvelope size ='30'  style={{margin:'auto 20px'}}/>
+
             {/* <div>
                 <input  className="search-bar" placeholder="Search"/>
             </div> */}
-            <div>
+           
+           
                 <img className="header-profile-img" src="https://i.postimg.cc/C13Ccsp0/christiana-rivers-O-XIv-Dy0pcs-unsplash.jpg" alt="pic"/>
             </div>
-            
-        </div>
+            <div>
+            <Modal
+				isOpen={modalIsOpen}
+				onRequestClose={() => setModalIsOpen(false)}
+				style={{
+					overlay: {
+						top: 0,
+						backgroundColor: 'rgba(211, 211, 211, 0.60)'
+                        },
+					content: {
+						padding: 2,
+						height: 500,
+                        marginTop:"1px",
+                        backgroundColor: '#181818',
+                        border:"none",
+                        width:"20%",
+                        margin:"auto",
+                        position:'relative',
+                        paddingTop:"5%",
+                        // paddingBottom:"2%"
+        			},
+				}}
+			>
+				<div className="modal-container">
+                <p className="open-modal-x" >Modal is Open</p>
+                        <p className="close-modal-x" style={{color:'red'}} onClick={() => setModalIsOpen(false)}>X</p>
+                  </div>
+			</Modal>
+       </div>
+       </div>
+
     )
 }

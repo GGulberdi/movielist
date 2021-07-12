@@ -1,6 +1,6 @@
 
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import "./trailers.css";
@@ -23,10 +23,11 @@ export default function AddTrailer() {
   const [cast, setCast] = useState([])
   const [genre, setGenre] = useState([])
   const [tags, setTags] = useState([])
-  const[isLoading,setIsLoading]=useState(false)
-  const[altImage,setAltImage]=useState('')
-  const[altBanner,setAltBanner]=useState('')
+  const [isLoading,setIsLoading]=useState(false)
+  const [altImage,setAltImage]=useState('')
+  const [altBanner,setAltBanner]=useState('')
   const [number,setNumber]=useState([1])
+
   const [watchMovieTitle,setwatchMovieTitle]=useState('')
   const [watchMovieLink,setwatchMovieLink]=useState('')
   const [watchMovie,setWatchMovie]=useState([])
@@ -41,6 +42,11 @@ const addMore = ()=>{
     e.preventDefault()
       setWatchMovie(watchMovie => [...watchMovie , {title:watchMovieTitle,link:watchMovieLink}]) 
   }
+
+useEffect(()=>{
+console.log(watchMovie)
+
+},[watchMovie])
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -79,9 +85,8 @@ const addMore = ()=>{
       formData.append('genre', genre)
       formData.append('altImage', altImage)
       formData.append('altBanner', altBanner)
-      watchMovie.map(item=>{
-        return formData.append('websiteId',JSON.stringify(item) )
-      })
+
+      formData.append('websiteId', JSON.stringify(watchMovie))
 
       await axios.post('http://movieapp-server.herokuapp.com/trailers', formData )
         .then((res) => {

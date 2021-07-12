@@ -31,6 +31,8 @@ import About from './components/Pages/About';
 import Faq from './components/Pages/Faq';
 import CommentDetails from './components/Comments/CommentDetails';
 import RatingDetails from './components/Ratings/RatingDetails';
+// import Notifications from './components/Header/Notifications';
+
 
 
 function App() {
@@ -117,7 +119,11 @@ function App() {
 				  exact path="/faq"
 				  render={() => <Faq />}
 				/>
-				
+				{/* <Route
+				  exact path="/notifications"
+				  render={() => <Notifications />}
+				/>
+				 */}
 
 
 				

@@ -11,11 +11,18 @@ export const COLUMNS = [
         Header:"TITLE",
         accessor:"title"
     },
+    // {
+    //     Header:"TYPE",
+    //     accessor:"type",
+    //     Cell:({row})=>{
+    //         return row.original.type.slice(0,1).toUpperCase() + row.original.type.slice(1)
+    //      }
+    // },
     {
         Header:"TYPE",
         accessor:"type",
         Cell:({row})=>{
-            return row.original.type.slice(0,1).toUpperCase() + row.original.type.slice(1)
+            return row.original.type ? row.original.type.slice(0,1).toUpperCase() + row.original.type.slice(1) : null
          }
     },
     {

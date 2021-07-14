@@ -303,7 +303,7 @@ export default function Comments() {
                       }}
                     /> */}
                     <Link  to={`/commentdetails/${row.original._id}`}>
-                    <BsFillEyeFill className="view-trailer-icon eyefill-icon" />&nbsp; 
+                    <BsFillEyeFill  className=" view-comment-icon "/>
                     </Link>
                     &nbsp;
                     <BsPencilSquare

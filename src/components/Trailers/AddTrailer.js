@@ -27,6 +27,7 @@ export default function AddTrailer() {
   const [altImage,setAltImage]=useState('')
   const [altBanner,setAltBanner]=useState('')
   const [number,setNumber]=useState([1])
+  const[selectedGenres,setSelectedGenres]=useState([])
 
   const [watchMovieTitle,setwatchMovieTitle]=useState('')
   const [watchMovieLink,setwatchMovieLink]=useState('')
@@ -42,11 +43,21 @@ const addMore = ()=>{
     e.preventDefault()
       setWatchMovie(watchMovie => [...watchMovie , {title:watchMovieTitle,link:watchMovieLink}]) 
   }
+  useEffect(()=>{
+    console.log(watchMovie)
+    
+    },[watchMovie])
 
-useEffect(()=>{
-console.log(watchMovie)
 
-},[watchMovie])
+  const selectGenre=(e)=>{
+    if(!selectedGenres.includes(e.target.id)){
+        setSelectedGenres(selectedGenres=> [...selectedGenres,e.target.id])
+    }else{
+        const index = selectedGenres.indexOf(e.target.id)
+        setSelectedGenres(selectedGenres.filter(item=>selectedGenres.indexOf(item)!==index))
+    }
+   }
+
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -85,7 +96,7 @@ console.log(watchMovie)
       formData.append('genre', genre)
       formData.append('altImage', altImage)
       formData.append('altBanner', altBanner)
-
+      formData.append('genre', JSON.stringify(selectedGenres))
       formData.append('websiteId', JSON.stringify(watchMovie))
 
       await axios.post('http://movieapp-server.herokuapp.com/trailers', formData )
@@ -115,6 +126,26 @@ console.log(watchMovie)
     setAltImage('')
     setAltBanner('')
   }
+
+  useEffect(()=>{
+    console.log(selectedGenres,'elif')
+    },[selectedGenres])
+  
+
+
+  useEffect(() => {
+    axios
+  .get('https://movieapp-server.herokuapp.com/categories')
+  .then((res) => {
+    setGenre(res.data);
+        console.log(res.data.response)
+
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}, [])
+
   return (
     <div className="addtrailer-container">
 <div>
@@ -200,9 +231,17 @@ console.log(watchMovie)
                 <div className="addtrailer-duration addtrailer-item">
                   <input placeholder="Tags" value={tags} onChange={(e) => setTags(e.target.value.split(','))} />
                 </div>
-                <div className="addtrailer-duration addtrailer-item">
-                  <input placeholder="Genre" value={genre} onChange={(e) => setGenre(e.target.value.split(','))} />
-                </div>
+                {/* <div className="addtrailer-duration addtrailer-item">
+                  <input type='checkbox' placeholder="Genre" value={genre} onChange={(e) => setGenre(e.target.value.split(','))} />
+                </div> */}
+                <div className="addtrailer-duration addtrailer-item genre" >
+                  <p>Genre</p>
+                {genre.map(item=>{
+                     return (<div  onClick={(e)=>selectGenre(e)}><input type="checkbox" name={item.name} id={item._id}/>
+                      <label htmlFor={item.name}>{item.name}</label></div>)
+                    
+                    })}
+                      </div>
                 
                 <div>{isLoading ? <p className="loading-text" >Uploading the movie trailer...</p>:null }</div>
               </div>

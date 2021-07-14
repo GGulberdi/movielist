@@ -33,6 +33,8 @@ export default function Rating() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalPost, setModalPost] = useState('')
   const [title, setTitle] = useState('')
+  const [imbd, setImbd]=useState('')
+  // console.log(data[0].imdb)
 
 
   
@@ -66,8 +68,8 @@ export default function Rating() {
     },
     {
       Header: 'RATING',
-      accessor: 'likes',
-      // Cell: ({ value }) => { return format(new Date(value), 'yyyy') },
+      accessor: 'userRating',
+      Cell: ({ row, value }) => {return value==0||value==null? 0:(((value.reduce((acc, item)=>acc+Number(item), 0)/value.length)+(row.original.imdb*1))/2).toFixed(1)},
     },
   ];
 

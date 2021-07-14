@@ -24,20 +24,36 @@
   font-style: normal;
 }
 .header-container {
- 
-  width: 100%;
-  left: 0;
-  justify-content: space-between;
-  display: flex;
-  align-items: center;
+ width: 100%;
+  justify-content:space-between;
+  display:flex;
+  /* align-items: center; */
   background-color: #181818;
   height: 100px;
-  position: relative;
-  width:100%;
+  /* position: relative; */
   top: 0;
   z-index: 2;
  
 }
+/* .header-container {
+  &:before, &:after  {
+     content: none !important;
+  }
+} */
+
+/* .header-container:last-child {
+justify-self: end;
+
+} */
+
+
+.header-left{
+position:relative;
+margin-left:0;
+padding-left: 0;
+}
+
+
 .header-link {
   text-decoration: none;
   color: white;

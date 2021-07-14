@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect , useRef} from 'react';
 import './header.css'
 import logo from '../../images/logo.png'
 import { GiHamburgerMenu, GiFiles } from "react-icons/gi";
@@ -7,18 +7,19 @@ import { FcAbout } from "react-icons/fc";
 import { FaQuestionCircle } from "react-icons/fa";
 import { BsFillPersonPlusFill,BsFillEyeFill,BsFillHouseDoorFill,BsFillStarFill,BsChatFill,BsFillPeopleFill,BsCardList,BsFilm,BsChevronRight,BsChevronDown,BsEnvelope } from "react-icons/bs";
 import {IoNotificationsOutline} from 'react-icons/io5'
-import {Link} from 'react-router-dom';
-import Modal from 'react-modal';
+import { Popover, Overlay, Button } from 'react-bootstrap';
 
 export default function Header() {
-    const [modalIsOpen, setModalIsOpen] = useState(false); 
-    const [modalPost,setModalPost]=useState('')
-
-    const handleClick=(e)=>{
-        // e.preventDefault
-        console.log('clicked')
-        setModalIsOpen(true)
-    }
+ 
+    const [show, setShow] = useState(false);
+    const [target, setTarget] = useState(null);
+    const ref = useRef(null);
+  
+    const handleClick = (event) => {
+      setShow(!show);
+      setTarget(event.target);
+    };
+  
   const[classname,setClassname]=useState('header-not-visible')
   const[categoryClassname,setCategoryClassname]=useState('dropdown-closed')
   const[trailerClassname,setTrailerClassname]=useState('dropdown-closed')
@@ -183,8 +184,8 @@ const openCategoryDropdown=()=>{
                         <div className="dropdown-item"> <FcAbout/> <a href="/about">About Us</a></div>
                         <div className="dropdown-item"> <RiContactsBookLine/> <a href="/contact">Contact</a></div>
                         <div className="dropdown-item"> <FaQuestionCircle/> <a href="/faq">FAQ</a></div>
-                        
-                       </div> 
+                      </div> 
+
                    </div>  
                </div>
             </div>
@@ -193,48 +194,45 @@ const openCategoryDropdown=()=>{
                 <div><img src={logo} alt="logo"/></div>
                 <div>ineTrail</div>
             </div>
-            <div style={{display:'flex', justifyContent:'space-between'}}>
-           {/* <Link to='/notifications' style={{margin:'auto 20px'}} ><IoNotificationsOutline type='button' size ='30' /></Link> */}
-      <IoNotificationsOutline type='button' size ='30' style={{margin:'auto 20px'}} onClick={handleClick}/>
+           
+            <div  className='header-left' style={{display:'flex', justifyContent:'space-between'}}>
+            <div ref={ref}>
+           <Button onClick={handleClick} style={{backgroundColor:'inherit', border:'none', margin:'auto'}}><IoNotificationsOutline type='button' size ='30' style={{margin:'auto 20px'}} onClick={handleClick}/></Button>
+           <Overlay
+        show={show}
+        target={target}
+        placement="bottom"
+        container={ref.current}
+        containerPadding={20}
+      >
+        <Popover id="popover-contained" style={{backgroundColor:'#181818'}}>
+          <Popover.Title as="h3"  style={{backgroundColor:'#181818'}}>Your Notifications</Popover.Title>
+          <Popover.Content style={{color:'white'}}>
+            <ul>
+                <li><strong>Holy guacamole!</strong> Check this info.</li>
+                <li><strong>Holy guacamole!</strong> Check this info.</li>
+                <li><strong>Holy guacamole!</strong> Check this info.</li>
+                <li><strong>Holy guacamole!</strong> Check this info.</li>
+                <li><strong>Holy guacamole!</strong> Check this info.</li>
 
+            </ul>
+          </Popover.Content>
+        </Popover>
+      </Overlay>
+    </div>
            <BsEnvelope size ='30'  style={{margin:'auto 20px'}}/>
 
             {/* <div>
                 <input  className="search-bar" placeholder="Search"/>
             </div> */}
-           
-           
+                      
                 <img className="header-profile-img" src="https://i.postimg.cc/C13Ccsp0/christiana-rivers-O-XIv-Dy0pcs-unsplash.jpg" alt="pic"/>
             </div>
-            <div>
-            <Modal
-				isOpen={modalIsOpen}
-				onRequestClose={() => setModalIsOpen(false)}
-				style={{
-					overlay: {
-						top: 0,
-						backgroundColor: 'rgba(211, 211, 211, 0.60)'
-                        },
-					content: {
-						padding: 2,
-						height: 500,
-                        marginTop:"1px",
-                        backgroundColor: '#181818',
-                        border:"none",
-                        width:"20%",
-                        margin:"auto",
-                        position:'relative',
-                        paddingTop:"5%",
-                        // paddingBottom:"2%"
-        			},
-				}}
-			>
-				<div className="modal-container">
-                <p className="open-modal-x" >Modal is Open</p>
-                        <p className="close-modal-x" style={{color:'red'}} onClick={() => setModalIsOpen(false)}>X</p>
-                  </div>
-			</Modal>
-       </div>
+            
+           
+   
+
+      
        </div>
 
     )

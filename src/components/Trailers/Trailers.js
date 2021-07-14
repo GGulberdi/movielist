@@ -34,6 +34,7 @@ export default function Trailers() {
     const [cast,setCast]=useState('')
     const [genre,setGenre]=useState('')
     const [tags,setTags]=useState('')
+    console.log(genre)
 
     
 

@@ -9,12 +9,12 @@
   color: white;
 }
 .trailer-icon-right {
-  margin-left: 1000%;
+  margin-left: 800%;
   margin-top: 50%;
   font-size: 18px;
 }
 .trailer-icon-down {
-  margin-left: 1000%;
+  margin-left: 800%;
   margin-top: 50%;
   font-size: 18px;
 }
@@ -254,4 +254,24 @@ optgroup {
   min-width: 200px;
   padding-left: 5%;
   padding-top: 20%;
+}
+
+.genre {
+  width: 95%;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  margin: 2%;
+  text-align: center;
+  display: flex;
+  background-color: #000000;
+}
+.genre input {
+ height: 25px;
+  width:25px;
+}
+.genre p {
+  font-size: large;
+  /* margin-left: 2%; */
+  margin: 1% 0 auto 2%;
 }

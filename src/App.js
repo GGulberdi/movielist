@@ -31,7 +31,7 @@ import About from './components/Pages/About';
 import Faq from './components/Pages/Faq';
 import CommentDetails from './components/Comments/CommentDetails';
 import RatingDetails from './components/Ratings/RatingDetails';
-// import Notifications from './components/Header/Notifications';
+import Notifications from './components/Header/Notifications';
 
 
 
@@ -119,11 +119,11 @@ function App() {
 				  exact path="/faq"
 				  render={() => <Faq />}
 				/>
-				{/* <Route
+				<Route
 				  exact path="/notifications"
 				  render={() => <Notifications />}
 				/>
-				 */}
+				
 
 
 				

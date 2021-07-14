@@ -1,31 +1,36 @@
-.commentlist-container {
+commentlist-container {
   background-color: #181818;
-  margin: 0;
-  width:100%;
-  background-color: lightcoral;
+  margin: 4%;
+  width: 100%;
+  /* background-color: lightcoral; */
+}
+.commentlist-container {
+  max-width: 100%;
   overflow-x: auto !important;
 }
 .commentlist-title {
-  margin-left: 2%;
-  padding-top: 2%;
+  margin-left: 4%;
+  margin-top: 2%;
+
+  /* padding-top: 2%; */
 }
 .hr-comment {
   height: 1px;
   background-color: black;
   border: none;
 }
-
 .search-show-bar-container {
   display: flex;
   justify-content: space-between;
+ 
 }
 .comment-show-bar {
-  margin-left: 2%;
+  margin-left: 4%;
   font-size: 20px;
 }
 .comment-show-bar select {
-  margin-top: 2%;
-  margin-bottom: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   font-size: 25px;
   border: none;
   border-radius: 3px;
@@ -38,9 +43,8 @@
   outline: none;
   box-shadow: none;
 }
-
 .comment-search-bar {
-  margin-right: 2%;
+  margin-right: 3%;
   font-size: 20px;
 }
 .comment-search-bar input {
@@ -49,33 +53,28 @@
   border: none;
   border-radius: 3px;
   height: 30px;
-  width: 200px;
+  width: 230px;
 }
 .comment-search-bar input:focus {
   outline: none;
   box-shadow: none;
 }
-.outer{
-  background-color: lawngreen;
-  width: 80%;
-  margin: 10%;
-  /* position: absolute; */
-
+.outer {
+  /* background-color: lawngreen; */
+  width: 87%;
+  margin: 3%;
+  position: absolute;
 }
 table {
-  border-collapse: separate;
-  border-spacing: 0px 15px;
-  width: 80%;
-  margin-left: 10%;
-  margin:auto;
+  /* border-collapse: separate; */
+  /* border-spacing: 0px 15px; */
+  /* width: 80%; */
+  /* margin-left: 10%; */
+  margin: 5%;
   background-color: #181818;
   font-size: inherit;
-  overflow-x: auto !important;
-
-
   /* font-size: 20px; */
   /* position: absolute; */
-
   color: white;
 }
 .row-icon-container {
@@ -90,6 +89,10 @@ table {
 .comments-icon-container {
   display: flex;
 }
+.comment-update-button-container{
+/* padding-top: 20px; */
+text-align: center;
+}
 .comments-sort-icon {
   margin-left: 3%;
   cursor: pointer;
@@ -100,9 +103,13 @@ table {
 .view-comment-icon {
   color: #f68a04;
   background-color: rgba(246, 138, 4, 0.2);
-  padding: 5px;
+  padding: 5%;
   border-radius: 4px;
   cursor: pointer;
+}
+.eyefill-icon {
+  margin-top: 10%;
+  margin-right: 75%;
 }
 .edit-comment-icon {
   color: #14e788;
@@ -137,13 +144,8 @@ table {
 table td,
 table th {
   background-color: #101010;
-  /* color: yellow; */
-  overflow-x: hidden;
-
   /* padding: 20px; */
-
 }
-
 table th {
   padding-top: 12px;
   padding-bottom: 12px;
@@ -151,65 +153,68 @@ table th {
   background-color: #181818;
   color: grey;
 }
-
-.blockMessage{
+.blockMessage {
   width: 95%;
   height: 60px;
   border: none;
   border-radius: 5px;
   margin: 2%;
+/* margin-left: 4%; */
+
   background-color: #000000;
   color: white;
 }
-.block-reason input{
-  margin:0;
-  padding:0;
-  
+table {
+  max-width: 100%;
+  margin: 3%;
+  overflow-x: auto !important;
+  /* margin: auto; */
 }
-
+.active-block {
+  height: 20px;
+}
 .block-reason {
-  margin:50px 0;
-  
-  
-}
+/* margin-left: 2%; */
+padding-top: 50px;
+padding-bottom: 30px; 
 
+}
+.block-reason input{
+  margin: 10px 0;
+  padding:  0;
+}
 .modal-column-two{
-  margin-left:2%;
-  font-size: 2rem;
-}
-
-.comment-update-button-container{
-  text-align: center;
-}
-
-.submit-btn{
-  width:10%;
-  height: 50px;
-  font-size: 2rem;
-}
-
-/* ty{
-  color:yellow;
-  width: 100%
-} */
-
-
+  margin-left: 2%;
+padding-top: 0; 
+font-size: 25px;
+  }
+  .submit-btn {
+    width: 10%;
+    height: 40px;
+    font-size: 2rem;
+  }
 /* Desktops and laptops ----------- */
-@media only screen
-and (min-width : 1224px) {
-  .commentlist-container{width:80%; margin:auto;}  
-  table{width:80%; margin:auto;}  
-  /* STYLES GO HERE */
-}
+/* @media only screen and (min-width: 1224px) {
+  .commentlist-container {
+    max-width: 100%;
+    overflow-x:  auto !important; 
+  }
+  table {
+    max-width: 100%;
+    margin: 3%;
+    overflow-x: auto !important;
+  } 
+  
+} */
 /* iPads (portrait) ----------- */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-
-  .commentlist-container{width:80%; margin:auto;} 
-  table{width:80%; margin:auto;}  
-
-/* STYLES GO HERE */
+/* @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+ .commentlist-container {
+  max-width: 100%;
+  overflow-x: auto !important;
 }
-
+ table {
+    max-width: 90%;
+    margin: 3%;
+  }
+ 
+} */

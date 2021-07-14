@@ -29,7 +29,7 @@ export const COLUMNS = [
         Header:"GENRE",
         accessor:"genre",
         Cell:({row})=>{
-           return row.original.genre.map(item=>item + ' ')
+           return row.original.genre.map(item=>item.name + ' ')
         }
        
     },

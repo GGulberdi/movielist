@@ -1,11 +1,12 @@
 import React,{useMemo,useEffect,useState} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import {useTable,useSortBy,useGlobalFilter,usePagination} from 'react-table';
 import { BsFileArrowDown,BsFileArrowUp,BsArrowUpDown } from "react-icons/bs";
 import { BsFillEyeFill,BsPencilSquare,BsFillTrashFill } from "react-icons/bs";
 import Modal from 'react-modal';
-import {COLUMNS} from './UsersColumns'
-import './usertable.css'
+import {COLUMNS} from './ContactColumn'
+import './contactTable.css'
 // import ReactImage from "react-image";
 
 
@@ -17,30 +18,21 @@ export default function Users() {
     const [data,setData]=useState([])
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalPost,setModalPost]=useState('');
-    const [mediaId,setMediaId]=useState('');
-
     const [firstname, setFirstname] = useState('');
     const [lastname,setLastname]=useState('');
-    // const [contact,setContact]=useState('');
     const [email,setEmail]=useState('');
-    const [country,setCountry]=useState('');
-    const [createdAt,setCreatedAt]=useState('');
-    const [isActive,setIsActive]=useState(true);
-
-    console.log(mediaId)
-
-
-    // const viewUserDetail=(userId)=>{
-    //     console.log(userId)
-    // }
+    const [phoneNumber,setPhoneNumber]=useState('');
+    const [subject,setSubject]=useState('');
+    const [content,setContent]=useState("");
+    const [image, setImage]=useState("")
+console.log(image)
+  
+  
     const handleSubmit=(userId)=>{
         const updatedUser={
             firstname,
             lastname,
-            country,
-            email,
-            isActive,
-            mediaId
+             email,
            
         }
         axios.put(`https://movieapp-server.herokuapp.com/users/${userId}`,updatedUser)
@@ -51,50 +43,49 @@ export default function Users() {
       
     }
 
+    
     const editUser=async (userId)=>{
-       await  axios
-        .get(`https://movieapp-server.herokuapp.com/users/${userId}`)
-        .then((res) => {  
-            setModalPost(res.data);
-            setMediaId(res.data.mediaId)
-            setFirstname(res.data.firstname)
-            setLastname(res.data.lastname)
-            setEmail(res.data.email)
-            setCountry(res.data.country)
-            setCreatedAt(res.data.createdAt)
-            setIsActive(res.data.isActive)
-            // setProfileImageId(res.data.profileImageId)
+      await  axios
+       .get(`https://movieapp-server.herokuapp.com/users/${userId}`)
+       .then((res) => {  
+           setModalPost(res.data);
+           setFirstname(res.data.firstname)
+           setLastname(res.data.lastname)
+           setEmail(res.data.email)
+ 
+       
+       })
+       .catch((err) => {
+           console.log(err);
+       });
+    
+           setModalIsOpen(true)
+    
+       
+   }
 
-        
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-     
-            setModalIsOpen(true)
-     
-        
+    const viewContactDetail=(userId)=>{
+        console.log(userId)
     }
 
-
-    const deleteuser=(userId)=>{
+    const deleteContact=(contactId)=>{
+      console.log(contactId)
         axios
-        .delete(`https://movieapp-server.herokuapp.com/users/${userId}`)
+        .delete(`https://movieapp-server.herokuapp.com/messages/${contactId}`)
         .then((res) => {
-            window.location.reload()
+          window.location.reload()
         })   
         .catch((err) => {
             console.log(err);
         });
-       
-    }
+      }
 
 
     useEffect(() => {
         axios
-			.get('https://movieapp-server.herokuapp.com/users')
+			.get('https://movieapp-server.herokuapp.com/messages')
 			.then((res) => {
-				setData(res.data.data);
+				setData(res.data.response);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -102,13 +93,14 @@ export default function Users() {
     }, [])
 
     const columns = useMemo(() => COLUMNS,[])
-    const users = useMemo(() => data,[])
+    const contact = useMemo(() => data,[])
+ 
      
    
 
     useTable({
         columns:columns,
-        data:users
+        data:contact
     })
    
     const {
@@ -176,7 +168,7 @@ export default function Users() {
                             <div className="modal-column-two">
                                 <div>
                                     <div className="modal-title-container form-item">
-                                         <img src={mediaId.url}/>
+                                         {/* <img src={mediaId.url}/> */}
                                          <label>Profile</label>
                                         <input type='file' onChange={(e)=>{console.log(e.target.file[0])}}/>
                                     </div>
@@ -191,12 +183,12 @@ export default function Users() {
                                     <div className="modal-group-container">
                                         <div className="modal-type-container form-item">
                                             <label>Status</label>
-                                            <select value={isActive} onChange={(e)=>{setIsActive(e.target.value)}}>
+                                            {/* <select value={isActive} onChange={(e)=>{setIsActive(e.target.value)}}>
                                 
                                                 <option value='true'>Active</option>
                                                 <option value='false'>Block</option>
                                             </select>
-                                            {/* <input value={isActive} onChange={(e)=>{setIsActive(e.target.value)}}/> */}
+                                            <input value={isActive} onChange={(e)=>{setIsActive(e.target.value)}}/> */}
                                         </div>
                                         <div className="modal-year-container form-item">
                                             <label>Email</label>
@@ -205,13 +197,12 @@ export default function Users() {
                                     </div>
                                     <div className="modal-group-container">
                                         <div className="modal-duration-container form-item">
-                                            <label>Country</label>
-                                            <input value={country} onChange={(e)=>{setCountry(e.target.value)}}/>
-                                        </div>
-                                    
+                                            {/* <label>Country</label>
+                                            <input value={country} onChange={(e)=>{setCountry(e.target.value)}}/> */}
+                                         </div>                                    
                                         <div className="modal-age-container form-item">
                                             <label>Join Date</label>
-                                            <input value={createdAt} onChange={(e)=>{setCreatedAt(e.target.value)}}/>
+                                            {/* <input value={createdAt} onChange={(e)=>{setCreatedAt(e.target.value)}}/> */}
                                         </div>
                                     </div>
                                     {/* <div>
@@ -258,7 +249,7 @@ export default function Users() {
         </div>
         
         <div className="userlist-container">
-            <h1 className="userlist-title">Users List</h1>
+            <h1 className="userlist-title">Contacts</h1>
            
             <hr className="hr-user"/>
         <div className="search-show-bar-container" >
@@ -318,9 +309,12 @@ export default function Users() {
                                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                 })}
                                 <td className="row-icon-container">
-                                    {/* <BsFillEyeFill className="view-user-icon" onClick={()=>{viewUserDetail(row.original._id)}} />&nbsp;  */}
+                                <Link to={`/singlecontact/${row.original._id}`}>
+                                <BsFillEyeFill className="view-user-icon" />&nbsp; 
+                                 </Link>
+                               
                                     <BsPencilSquare className="edit-user-icon" onClick={()=>{editUser(row.original._id)}}/>&nbsp; 
-                                    <BsFillTrashFill className="delete-user-icon" onClick={()=>{deleteuser(row.original._id)}}/>
+                                    <BsFillTrashFill className="delete-user-icon" onClick={()=>{deleteContact(row.original._id)}}/>
                                 </td>
                         
                                

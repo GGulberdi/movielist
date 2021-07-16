@@ -26,12 +26,14 @@ import Login from './components/Pages/Login';
 import Register from './components/Pages/Register';
 import Recover from './components/Pages/Recover';
 import Confirm from './components/Pages/Confirm';
-import Contact from './components/Pages/Contact';
+import Contact from './components/Contact/Contact';
+import SingleContact from './components/Contact/SingleContact';
 import About from './components/Pages/About';
 import Faq from './components/Pages/Faq';
 import CommentDetails from './components/Comments/CommentDetails';
 import RatingDetails from './components/Ratings/RatingDetails';
 import Notifications from './components/Header/Notifications';
+
 
 
 
@@ -110,6 +112,10 @@ function App() {
 				<Route
 				  exact path="/contact"
 				  render={() => <Contact />}
+				/>
+				<Route
+				  exact path="/singlecontact/:id"
+				  render={() => <SingleContact />}
 				/>
 				<Route
 				  exact path="/about"

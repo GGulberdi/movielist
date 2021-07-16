@@ -307,20 +307,15 @@ export default function Trailers() {
                         ))
                     } 
             </select>&nbsp; entries
-
-            </div>
-          
+           </div>
             <div className="trailer-search-bar">
                 Search:&nbsp;&nbsp;
                 <input value={globalFilter || ''}
                 onChange={e=>setGlobalFilter(e.target.value)}
                 />
             </div>
-            
-
-        </div>
-        
-        {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/> */}
+      </div>
+       {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>  */}
         <table {...getTableProps()}>
             <thead>
 
@@ -341,7 +336,6 @@ export default function Trailers() {
                     ))
                 }
             </thead>
-
             <tbody {...getTableBodyProps()}>
                 {
                     page.map(row=>{
@@ -360,28 +354,21 @@ export default function Trailers() {
                                     <BsPencilSquare className="edit-trailer-icon" onClick={()=>{editTrailer(row.original._id)}}/>&nbsp; 
                                     <BsFillTrashFill className="delete-trailer-icon" onClick={()=>{deleteTrailer(row.original._id)}}/>
                                 </td>
-                        
-                               
                             </tr>
                         )
                     })
                 }
-              
-            </tbody>
-            
-        </table>
-        
-       <div className="trailer-button-container">
+               </tbody>
+            </table>
+        <div className="trailer-button-container">
             <button onClick={()=>gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
             <button className="trailer-page-nav" onClick={()=>previousPage()} disabled={!canPreviousPage}>Previous</button>
             <div className="trailer-current-page">{pageIndex+1}</div>
             <button className="trailer-page-nav" onClick={()=>nextPage()} disabled={!canNextPage}>Next</button>
             <button onClick={()=>gotoPage(pageCount-1)} disabled={!canNextPage}>{'>>'}</button>
        </div>
-       
-        
-        </div>
-        </div> 
+       </div>
+       </div> 
     )
 }
 

@@ -13,7 +13,7 @@ export default function SingleUser({user}) {
 
   useEffect(() => {
         axios
-            .get(`https://movieapp-server.herokuapp.com/medias/${user.profileImageId}`)
+            .get(`https://movieapp-server.herokuapp.com/medias/${user.mediaId}`)
             .then((res) => {
                            console.log(res.data.url)
                            setProfileImageUrl(res.data.url); 
@@ -22,7 +22,7 @@ export default function SingleUser({user}) {
                            console.log(err);
                        });
         
-	}, [user.profileImageId]);
+	}, [user.mediaId]);
 
     
   const deleteUser=(id)=>{

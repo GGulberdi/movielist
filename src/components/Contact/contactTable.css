@@ -1,12 +1,12 @@
-.userlist-container {
+.contactlist-container {
   background-color: #181818;
   margin: 5%;
 }
-.userlist-title {
+.contactlist-title {
   margin-left: 2%;
   padding-top: 2%;
 }
-.hr-user {
+.hr-contact {
   height: 1px;
   background-color: black;
   border: none;
@@ -16,11 +16,11 @@
   display: flex;
   justify-content: space-between;
 }
-.user-show-bar {
+.contact-show-bar {
   margin-left: 2%;
   font-size: 20px;
 }
-.user-show-bar select {
+.contact-show-bar select {
   margin-top: 2%;
   margin-bottom: 10%;
   font-size: 25px;
@@ -31,16 +31,16 @@
   width: 70px;
   padding: 1px;
 }
-.user-show-bar select:focus {
+.contact-show-bar select:focus {
   outline: none;
   box-shadow: none;
 }
 
-.user-search-bar {
+.contact-search-bar {
   margin-right: 2%;
   font-size: 20px;
 }
-.user-search-bar input {
+.contact-search-bar input {
   background-color: #101010;
   color: white;
   border: none;
@@ -48,7 +48,7 @@
   height: 30px;
   width: 200px;
 }
-.user-search-bar input:focus {
+.contact-search-bar input:focus {
   outline: none;
   box-shadow: none;
 }
@@ -70,51 +70,51 @@ table {
   height: 105px;
   background-color: #101010;
 }
-.users-icon-container {
+.contacts-icon-container {
   display: flex;
 }
-.users-sort-icon {
+.contacts-sort-icon {
   margin-left: 3%;
   cursor: pointer;
 }
-.users-sort-icon:hover {
+.contacts-sort-icon:hover {
   color: white;
 }
-.view-user-icon {
+.view-contact-icon {
   color: #f68a04;
   background-color: rgba(246, 138, 4, 0.2);
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
-.edit-user-icon {
+.edit-contact-icon {
   color: #14e788;
   background-color: rgba(20, 231, 136, 0.2);
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
-.delete-user-icon {
+.delete-contact-icon {
   color: #e20e02;
   background-color: rgba(226, 14, 2, 0.2);
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
-.user-button-container {
+.contact-button-container {
   display: flex;
   justify-content: center;
   padding-bottom: 4%;
   padding-bottom: 2%;
 }
-.user-current-page {
+.contact-current-page {
   min-width: 20px;
   text-align: center;
   font-size: 20px;
   padding: 10px;
   background-color: #e20e02;
 }
-.user-page-nav {
+.contact-page-nav {
   min-width: 80px;
 }
 table td,

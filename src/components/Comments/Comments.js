@@ -8,7 +8,7 @@ import {
 } from "react-table";
 import { BsFileArrowDown, BsFileArrowUp, BsArrowUpDown } from "react-icons/bs";
 import { BsFillEyeFill, BsPencilSquare, BsFillTrashFill } from "react-icons/bs";
-import Modal from "react-modal";
+import Modal from "react-modal"; 
 import { COLUMNS } from "./CommentsColumns";
 import "./commentsTable.css";
 import {Link} from 'react-router-dom'
@@ -175,13 +175,14 @@ export default function Comments() {
             },
             content: {
               padding: 2,
-              height: 700,
+              height: 550,
               marginTop: "10px",
               backgroundColor: "#181818",
               border: "none",
               width: "70%",
               margin: "auto",
               paddingTop: "2%",
+              paddingBottom: "2%",
             },
           }}
         >
@@ -204,13 +205,13 @@ export default function Comments() {
                     </p>
                   
                     <p>{data.title}</p>
-                    <p>{description}</p>
-                    <p>{createdAt}</p>
-                    <select style={{width:'7%' , height:'25px', fontSize:'1.3rem'}}
+                    <p style={{fontSize:"18px"}}>{description}</p>
+                    <p>{createdAt.slice(0,10)}</p>
+                    <select  className="change-comment-active" 
                       value={isActive}
                       onChange={handleChange}
                     >
-                      <option value="true">Active</option>
+                      <option  value="true">Active</option>
                       <option value="false">Block</option> 
                       </select>
 
@@ -219,7 +220,7 @@ export default function Comments() {
 
 
                 
-                {block? <div className='block-reason'><label> Reason block message</label><input className='blockMessage' value={reasonBlock} type='text' onChange={(e)=>setReasonBlock(e.target.value)}/></div>:"" }
+                {block? <div className='block-reason'><label> Reason to block message</label><input className='blockMessage' value={reasonBlock} type='text' onChange={(e)=>setReasonBlock(e.target.value)}/></div>:"" }
                   
                 <div className="comment-update-button-container">
                   <button
@@ -254,7 +255,6 @@ export default function Comments() {
             </select>
             &nbsp; entries
           </div>
-
           <div className="comment-search-bar">
             Search:&nbsp;&nbsp;
             <input
@@ -296,14 +296,8 @@ export default function Comments() {
                     );
                   })}
                   <td className="row-icon-container">
-                    {/* <BsFillEyeFill
-                      className="view-comment-icon"
-                      onClick={() => {
-                        viewCommentDetail(row.original._id);
-                      }}
-                    /> */}
                     <Link  to={`/commentdetails/${row.original._id}`}>
-                    <BsFillEyeFill  className=" view-comment-icon "/>
+                    <BsFillEyeFill className="view-comment-icon"/>&nbsp; 
                     </Link>
                     &nbsp;
                     <BsPencilSquare

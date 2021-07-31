@@ -1,19 +1,4 @@
-// import React from 'react'
-// import SingleRating from './SingleRating'
-// import './ratings.css'
 
-// export default function Ratings() {
-
-//     const array=[1,2,3,4,5]
-//     return (
-//         <div style={{marginLeft:"500px",marginTop:"100px",height:"520px"}}>
-//            <h1>Ratings List </h1> 
-//             {array.map(arr=>
-//                 <SingleRating/>)}
-
-//         </div>
-//     )
-// }
 import React, { useMemo, useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import axios from 'axios'
@@ -33,9 +18,7 @@ export default function Rating() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalPost, setModalPost] = useState('')
   const [title, setTitle] = useState('')
-  const [imbd, setImbd]=useState('')
-  // console.log(data[0].imdb)
-
+  
 
   
 
@@ -49,30 +32,37 @@ export default function Rating() {
     },
     {
       Header: 'TYPE',
-      accessor: 'type', // accessor is the "key" in the data
+      accessor: 'type', // accessor is the "key" in the data 
+      Cell:({row})=>{
+        return row.original.type ? row.original.type.slice(0,1).toUpperCase() + row.original.type.slice(1) : null
+     }
     },
     {
       Header: 'NAME',
       accessor: 'title',
-    },
-    {
-      Header: 'DESCRIPTION',
-      accessor: 'description',
       Cell:({row})=>{
-        return <span>{row.original.description && row.original.description.slice(0,40)}...</span>  }
+        return <span>{row.original.title && row.original.title.slice(0,25)}</span>  }
     },
     {
-      Header: 'Releasy DATE',
+      Header: 'YEAR',
       accessor: 'createdAt',
       Cell: ({ value }) => { return format(new Date(value), 'yyyy') },
     },
     {
+      Header: 'IMDB',
+      accessor: 'imdb', 
+    
+    },
+    {
       Header: 'RATING',
       accessor: 'userRating',
-      Cell: ({ row, value }) => {return value==0||value==null? 0:(((value.reduce((acc, item)=>acc+Number(item), 0)/value.length)+(row.original.imdb*1))/2).toFixed(1)},
+      Cell:({row})=>{
+        return row.original.userRating.length !==0 ? ((row.original.userRating.reduce((a,b)=> (a*1+b*1))/4+row.original.imdb*1)/2).toFixed(1) : null
+     }
+     
     },
   ];
-
+ 
 
 
   const viewTrailerDetail = (trailerId) => {
@@ -108,33 +98,9 @@ export default function Rating() {
         console.log(err);
       });
 
-  }
+  } 
 
-  const editTrailer=async (trailerId)=>{
-    await  axios
-     .get(`https://movieapp-server.herokuapp.com/trailers/${trailerId}`)
-     .then((res) => {  
-         setModalPost(res.data);
-         setTitle(res.data.title)
-        //  setEpisodeTitle(res.data.episodeTitle)
-        //  setType(res.data.type)
-        //  setYear(res.data.year)
-        //  setDuration(res.data.duration)
-        //  setMediaUrl(res.data.mediaId.url)
-        //  setBannerUrl(res.data.bannerId.url)
-        //  setDescription(res.data.description)
-        //  setAgeRestriction(res.data.ageRestriction)
-        //  setTotalSeasons(res.data.totalSeasons)
-        //  setSeasonNumber(res.data.seasonNumber)
-        //  setEpisodeNumber(res.data.episodeNumber)
-        //  setTrailerUrl(res.data.trailerUrl)
-     })
-     .catch((err) => {
-         console.log(err);
-     });
-         setModalIsOpen(true)
-         
- }
+
 
   const columns = useMemo(() => COLUMNS, [])
   const comments = useMemo(() => data, [])
@@ -246,7 +212,7 @@ export default function Rating() {
                       </div>
 
                     </th>))}
-                  <th>ACTIONS</th>
+                  <th>ACTION</th>
                 </tr>
               ))
             }
@@ -264,7 +230,7 @@ export default function Rating() {
                     })}
                     <td role='cell' className="row-icon-container">
                      <Link  to={`/ratingdetails/${row.original._id}`}>
-                      <BsFillEyeFill className="view-trailer-icon" onClick={() => { viewTrailerDetail(row.original._id) }} />&nbsp;
+                      <BsFillEyeFill className="view-trailer-icon-rating" onClick={() => { viewTrailerDetail(row.original._id) }} />&nbsp;
                       </Link>
                       {/* <BsPencilSquare className="edit-trailer-icon" onClick={() => { editTrailer(row.original._id) }} />&nbsp; */}
                       <BsFillTrashFill className="delete-trailer-icon" onClick={() => { deleteComment(row.original._id) }} />

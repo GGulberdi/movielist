@@ -11,7 +11,7 @@
 
 .footer-left {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .footer-left1111 {
@@ -23,4 +23,10 @@
 
 .footer-container {
   margin-top: 100px;
+}
+.footer-item {
+  margin-left: 15px;
+}
+.footer-right {
+  margin-right: 30px;
 }

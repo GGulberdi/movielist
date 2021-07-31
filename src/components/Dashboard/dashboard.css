@@ -1,0 +1,50 @@
+.status-card{
+    /* padding:30px; */
+    display:flex;
+    align-items:center;
+    /* background-color:#181818; */
+    /* box-shadow:'' */
+    position:relative;
+    overflow:hidden;
+    /* z-index: index 1;transition:color .5s case 0s; */
+    margin-bottom: 30px;
+    width: 70%;
+    
+}
+
+.status-card-icon{
+    width:25%;
+    height:100%;
+    font-size: 1rem;
+    display:flex;
+    align-items: center;
+    /* z-index: 1; */
+    background-color:#181818;
+    margin: 10px 3px 3px 10px;
+
+}
+
+.status-card-info{
+    flex-grow:1;
+    text-align:center;
+    z-index:1;
+    text-transform:capitalize;
+}
+.status-card-info h4{
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+.status-card::before{
+    content: "";
+    width: 100%;
+    padding-top:100%;
+    border-radius: 50%;
+    background-image: linear-gradient(
+        to top right,
+        'red',
+        'orange'
+    );
+    position:absolute;
+    left:-50%;
+    top: 0;
+}

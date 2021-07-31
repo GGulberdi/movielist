@@ -8,7 +8,7 @@ import ReactPlayer from "react-player";
 import Modal from 'react-modal';
 import {COLUMNS} from './ColumnsCategory'
 import './table.css'
-
+ 
 
 Modal.setAppElement('#root');
 
@@ -147,11 +147,11 @@ export default function Categories() {
 					},
 					content: {
 						padding: 2,
-						height: 500,
+						height: 550,
                         marginTop:"10px",
                         backgroundColor: '#181818',
                         border:"none",
-                        width:"70%",
+                        width:"60%",
                         margin:"auto",
                         paddingTop:"2%",
                         paddingBottom:"2%"
@@ -267,4 +267,4 @@ export default function Categories() {
         </div>
         </div> 
     )
-}
+} 

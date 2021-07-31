@@ -12,28 +12,28 @@ import Header from './components/Header/Header';
 import Comments from './components/Comments/Comments'
 import Ratings from './components/Ratings/Ratings';
 import Categories from './components/Categories/Categories';
-import Trailers from './components/Trailers/Trailers';
-import Dashboard from './components/Dashboard/Dashboard';
 import AddCategory from './components/Categories/AddCategory';
+import Trailers from './components/Trailers/Trailers';
 import AddTrailer from './components/Trailers/AddTrailer';
-import Footer from './components/Footer/Footer';
-import PrivacyPolicy from './components/Footer/PrivacyPolicy';
-import TermOfUse from './components/Footer/PrivacyPolicy';
 import TrailerDetails from './components/Trailers/TrailerDetails';
+import Message from './components/Messages/Message';
+import SingleMessage from './components/Messages/SingleMessage';
+import Dashboard from './components/Dashboard/Dashboard';
+import Footer from './components/Footer/Footer';
+import Privacy from './components/Pages/Privacy';
+import TermOfUse from './components/Pages/TermOfUse';
+import ContactInfo from './components/Pages/ContactInfo';
 // import Pages from './components/Pages/Pages';
 import Login from './components/Pages/Login';
 // import ExtraPages from './components/Pages/ExtraPages';
-import Register from './components/Pages/Register';
-import Recover from './components/Pages/Recover';
 import Confirm from './components/Pages/Confirm';
-import Contact from './components/Contact/Contact';
-import SingleContact from './components/Contact/SingleContact';
 import About from './components/Pages/About';
-import Faq from './components/Pages/Faq';
+import Faqs from './components/Faqs/Faqs';
+import AddFaq from './components/Faqs/AddFaq';
+import FaqDetails from './components/Faqs/FaqDetails';
 import CommentDetails from './components/Comments/CommentDetails';
 import RatingDetails from './components/Ratings/RatingDetails';
-import Notifications from './components/Header/Notifications';
-
+// import Notifications from './components/Header/Notifications';
 
 
 
@@ -42,7 +42,6 @@ function App() {
   const [users, setUsers] = useState([]);
   const [comments,setComments]=useState([]);
   const [trailers, setTrailers] = useState([]);
-  
   
   return (
     <div className="app">
@@ -86,50 +85,52 @@ function App() {
 				  render={() => <TrailerDetails />}
 				/>
 				<Route
-				  exact path="/privacypolicy"
-				  render={() => <PrivacyPolicy />}
+				  exact path="/messages"
+				  render={() => <Message />}
 				/>
 				<Route
-				  exact path="/termofuse"
+				  exact path="/singlemessage/:id"
+				  render={() => <SingleMessage />}
+				/>
+				<Route
+				  exact path="/privacypolicy"
+				  render={() => <Privacy />}
+				/>
+				<Route
+				  exact path="/termsofuse"
 				  render={() => <TermOfUse />}
+				/>
+				<Route
+				  exact path="/contactinfo"
+				  render={() => <ContactInfo />}
 				/>
 				<Route
 				  exact path="/login"
 				  render={() => <Login />}
 				/>
-				<Route
-				  exact path="/register"
-				  render={() => <Register />}
-				/>
-				<Route
-				  exact path="/recover"
-				  render={() => <Recover />}
-				/>
+				
 				<Route
 				  exact path="/confirm"
 				  render={() => <Confirm />}
 				/>
-				<Route
-				  exact path="/contact"
-				  render={() => <Contact />}
-				/>
-				<Route
-				  exact path="/singlecontact/:id"
-				  render={() => <SingleContact />}
-				/>
+				
 				<Route
 				  exact path="/about"
 				  render={() => <About />}
 				/>
 				<Route
-				  exact path="/faq"
-				  render={() => <Faq />}
+				  exact path="/faqs"
+				  render={() => <Faqs />}
 				/>
 				<Route
+				  exact path="/addfaq"
+				  render={() => <AddFaq />}
+				/>
+				{/* <Route
 				  exact path="/notifications"
 				  render={() => <Notifications />}
 				/>
-				
+				 */}
 
 
 				

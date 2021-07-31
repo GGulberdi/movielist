@@ -31,7 +31,7 @@ export default function About() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5005/staticpage/name/About Us")
+      .get("http://localhost:5005/staticpage/name/Terms of Use")
       .then((res) => {
         setData(res.data.data);
         console.log(res.data.data);
@@ -51,7 +51,7 @@ export default function About() {
   return (
     <div className="addcategory-container">
           <form className="addcategory-form-container" onSubmit={handleSubmit}>
-                <div className="addcategory-title"><h1>{name}</h1></div>
+                <div className="addcategory-title"><h1>{data.name}</h1></div>
                 {/* <div className="addcategory-name addcategory-item">
                             <input className="addcategory-name-input" placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} />
                 </div> */}

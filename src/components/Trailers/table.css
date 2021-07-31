@@ -1,6 +1,7 @@
 .trailerlist-container {
   background-color: #181818;
-  margin: 10%;
+  margin: 5%;
+  overflow-x: auto !important;
 }
 .trailerlist-title {
   margin-left: 2%;
@@ -59,7 +60,7 @@ table {
   width: 80%;
   margin-left: 10%;
   background-color: #181818;
-  font-size: 20px;
+  font-size: 24px;
   color: white;
 }
 .row-icon-container {
@@ -86,11 +87,11 @@ table {
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 27px;
 }
-.eyefill-icon {
+/* .eyefill-icon {
   margin-top: 85%;
-  /* margin-right: 75%; */
-}
+} */
 .edit-trailer-icon {
   color: #14e788;
   background-color: rgba(20, 231, 136, 0.2);

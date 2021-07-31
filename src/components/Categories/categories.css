@@ -5,12 +5,12 @@
 }
 
 .category-icon-right {
-  margin-left: 600%;
+  margin-left: 650%;
   margin-top: 50%;
   font-size: 18px;
 }
 .category-icon-down {
-  margin-left: 600%;
+  margin-left: 650%;
   margin-top: 50%;
   font-size: 18px;
 }
@@ -49,7 +49,7 @@
   border-radius: 5px;
   margin: 2%;
   background-color: #000000;
-  color:azure;
+  color: azure;
 }
 .addcategory-description-input {
   width: 95%;
@@ -58,24 +58,19 @@
   border-radius: 5px;
   margin: 0 2%;
   background-color: #000000;
-  color:azure;
+  color: azure;
   text-align: left;
- 
 }
 .addcategory-title {
   margin: 0 0 0 2%;
   padding-top: 1%;
 }
 
-.addcategory-description-input::placeholder{
+.addcategory-description-input::placeholder {
   position: absolute;
   top: 0px;
   color: white;
-
-
 }
-
-
 
 .addcategory-status h3 {
   margin-left: 2%;
@@ -97,19 +92,43 @@
   color: white;
 }
 
-.modal-name-container,  .modal-description-container{
+.modal-name-container,
+.modal-description-container {
   margin-bottom: 20px;
 }
 
-.category-update-button-container{
-  margin-top:50px;
+.category-update-button-container {
+  margin-top: 50px;
   text-align: center;
 }
 
-.category-update-button{
+.category-update-button {
   width: 50%;
+  border: none;
+  border-radius: 3px;
+  color: white;
 }
 
-.modal-name-container input, .modal-description-container textarea{
+.modal-name-container input,
+.modal-description-container textarea {
   font-size: 1.2rem;
+}
+.modal-description-container textarea {
+  min-height: 300px;
+}
+
+.category-current-page {
+  min-width: 20px;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  background-color: #e20e02;
+}
+.no-warning {
+  display: none;
+}
+.warning {
+  color: #e20e02;
+  margin-left: 2%;
+  margin-bottom: 2%;
 }

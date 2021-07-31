@@ -6,19 +6,13 @@ import { BsFillEyeFill,BsPencilSquare,BsFillTrashFill } from "react-icons/bs";
 import Modal from 'react-modal';
 import {COLUMNS} from './UsersColumns'
 import './usertable.css'
-// import ReactImage from "react-image";
-
-
-
 Modal.setAppElement('#root');
 export default function Users() {
-    
-   
     const [data,setData]=useState([])
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalPost,setModalPost]=useState('');
+    // const [profile,setProfile]=useState('');
     const [mediaId,setMediaId]=useState('');
-
     const [firstname, setFirstname] = useState('');
     const [lastname,setLastname]=useState('');
     // const [contact,setContact]=useState('');
@@ -26,31 +20,23 @@ export default function Users() {
     const [country,setCountry]=useState('');
     const [createdAt,setCreatedAt]=useState('');
     const [isActive,setIsActive]=useState(true);
-
-    console.log(mediaId)
-
-
     // const viewUserDetail=(userId)=>{
     //     console.log(userId)
     // }
     const handleSubmit=(userId)=>{
-        const updatedUser={
-            firstname,
-            lastname,
-            country,
-            email,
-            isActive,
-            mediaId
-           
-        }
-        axios.put(`https://movieapp-server.herokuapp.com/users/${userId}`,updatedUser)
+   console.log(userId)
+        const formData = new FormData();
+        formData.append("mediaId", mediaId);
+        formData.append("firstname", firstname);
+        formData.append("lastname", lastname);
+        formData.append("country", country);
+        formData.append("isActive", isActive);
+        axios.put(`https://movieapp-server.herokuapp.com/users/${userId}`,formData)
         .then(res=>{
             window.location.reload()
         })
-        .catch(err=>{console.log(err)})
-      
+        .catch(err=>{console.log(err)})     
     }
-
     const editUser=async (userId)=>{
        await  axios
         .get(`https://movieapp-server.herokuapp.com/users/${userId}`)
@@ -63,20 +49,12 @@ export default function Users() {
             setCountry(res.data.country)
             setCreatedAt(res.data.createdAt)
             setIsActive(res.data.isActive)
-            // setProfileImageId(res.data.profileImageId)
-
-        
         })
         .catch((err) => {
             console.log(err);
-        });
-     
-            setModalIsOpen(true)
-     
-        
+        });     
+            setModalIsOpen(true)    
     }
-
-
     const deleteuser=(userId)=>{
         axios
         .delete(`https://movieapp-server.herokuapp.com/users/${userId}`)
@@ -85,32 +63,25 @@ export default function Users() {
         })   
         .catch((err) => {
             console.log(err);
-        });
-       
+        }); 
     }
-
-
     useEffect(() => {
         axios
 			.get('https://movieapp-server.herokuapp.com/users')
 			.then((res) => {
 				setData(res.data.data);
+                // console.log(res.data.data)
 			})
 			.catch((err) => {
 				console.log(err);
 			});
     }, [])
-
     const columns = useMemo(() => COLUMNS,[])
     const users = useMemo(() => data,[])
-     
-   
-
     useTable({
         columns:columns,
         data:users
     })
-   
     const {
         getTableProps,
         getTableBodyProps,
@@ -134,12 +105,8 @@ export default function Users() {
     useGlobalFilter,useSortBy,usePagination)
  
     const { globalFilter,pageIndex,pageSize }=state
-
-
-
     return (
         <div>
-
 <div>
             <Modal
 				isOpen={modalIsOpen}
@@ -148,21 +115,17 @@ export default function Users() {
 					overlay: {
 						top: 35,
 						backgroundColor: 'rgba(211, 211, 211, 0.60)',
-                        marginTop:"30px"
-                
-                        
+                        marginTop:"30px"                                  
 					},
 					content: {
 						padding: 2,
-						height: 500,
+						height: 450,
                         marginTop:"10px",
                         backgroundColor: '#181818',
                         border:"none",
                         width:"95%",
                         margin:"auto",
-                        paddingTop:"2%"
-                        
-                        
+                        paddingTop:"2%"                                     
 					},
 				}}
 			>
@@ -170,49 +133,44 @@ export default function Users() {
                         <p className="close-modal-x" onClick={() => setModalIsOpen(false)}>X</p>
                         <form onSubmit={(e)=>{e.preventDefault();handleSubmit(modalPost._id)}} className="modal-form">
                             <div className="modal-column-one">
-                                              
-                               
+                                <img src={mediaId.url} style={{height:"300px", width:"300px",borderRadius:"4px"}} alt="profile"/>
                             </div>
                             <div className="modal-column-two">
                                 <div>
-                                    <div className="modal-title-container form-item">
-                                         <img src={mediaId.url}/>
-                                         <label>Profile</label>
-                                        <input type='file' onChange={(e)=>{console.log(e.target.file[0])}}/>
-                                    </div>
-                                    <div className="modal-description-container form-item">
+                                    {/* <div className="modal-title-container form-item">
+                                        <input type="file" onChange={(e)=>{setMediaId(e.target.files[0])}}/>
+                                    </div> */}
+                                    {/* <div className="modal-description-container form-item">
                                         <label>Firstname</label>
-                                        <textarea value={firstname} onChange={(e)=>{setFirstname(e.target.value)}}/>
+                                        <input value={firstname} onChange={(e)=>{setFirstname(e.target.value)}}/>
                                     </div>
                                     <div className="modal-description-container form-item">
                                         <label>Lastname</label>
-                                        <textarea value={lastname} onChange={(e)=>{setLastname(e.target.value)}}/>
-                                    </div>
+                                        <input value={lastname} onChange={(e)=>{setLastname(e.target.value)}}/>
+                                    </div> */}
+                                     <p><span style={{color:"#E20E02"}}>USER FULLNAME:</span> {firstname.toUpperCase()}{' '}{lastname.toUpperCase()}</p>
+                                     <p><span style={{color:"#E20E02"}}>USER EMAIL:</span> {email}</p>
+                                     <p><span style={{color:"#E20E02"}}>COUNTRY:</span> {country}</p>
+                                     <p><span style={{color:"#E20E02"}}>JOINED AT:</span> {createdAt.slice(0,10)}</p>
                                     <div className="modal-group-container">
                                         <div className="modal-type-container form-item">
                                             <label>Status</label>
                                             <select value={isActive} onChange={(e)=>{setIsActive(e.target.value)}}>
-                                
                                                 <option value='true'>Active</option>
                                                 <option value='false'>Block</option>
                                             </select>
                                             {/* <input value={isActive} onChange={(e)=>{setIsActive(e.target.value)}}/> */}
-                                        </div>
-                                        <div className="modal-year-container form-item">
-                                            <label>Email</label>
-                                            <input value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
-                                        </div>
+                                        </div>                                      
                                     </div>
                                     <div className="modal-group-container">
-                                        <div className="modal-duration-container form-item">
+                                        {/* <div className="modal-duration-container form-item">
                                             <label>Country</label>
                                             <input value={country} onChange={(e)=>{setCountry(e.target.value)}}/>
-                                        </div>
-                                    
-                                        <div className="modal-age-container form-item">
+                                        </div>                                     */}
+                                        {/* <div className="modal-age-container form-item">
                                             <label>Join Date</label>
-                                            <input value={createdAt} onChange={(e)=>{setCreatedAt(e.target.value)}}/>
-                                        </div>
+                                            <p style={{color:"white"}}>{createdAt.slice(0,10)}</p>
+                                        </div> */}
                                     </div>
                                     {/* <div>
                                             {type === 'show' 
@@ -242,24 +200,18 @@ export default function Users() {
                                     {/* </div>
                                     :null} */}
                                     
-                                {/* </div> */}
-                                   
+                                {/* </div> */}                                  
                                 </div>
                                <div className="trailer-update-button-container" >
                                   <button className="trailer-update-button submit-btn" type="submit">Submit</button>
-                               </div>
-                                
-                            </div>
-              
-                        </form>
-              
+                               </div>                              
+                            </div>           
+                        </form>            
                 </div>
 			</Modal>
-        </div>
-        
+        </div>      
         <div className="userlist-container">
-            <h1 className="userlist-title">Users List</h1>
-           
+            <h1 className="userlist-title">Users List</h1>         
             <hr className="hr-user"/>
         <div className="search-show-bar-container" >
             <div className="user-show-bar">
@@ -272,23 +224,17 @@ export default function Users() {
                         ))
                     } 
             </select>&nbsp; entries
-
-            </div>
-          
+            </div>      
             <div className="user-search-bar">
                 Search:&nbsp;&nbsp;
                 <input value={globalFilter || ''}
                 onChange={e=>setGlobalFilter(e.target.value)}
                 />
-            </div>
-            
-
-        </div>
-        
+            </div>        
+        </div>    
         {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/> */}
         <table {...getTableProps()}>
             <thead>
-
                 {
                     headerGroups.map((headerGroup)=>(
                         <tr {...headerGroup.getHeaderGroupProps()}>
@@ -299,21 +245,18 @@ export default function Users() {
                                    <div>{column.render('Header')}</div>
                                    <div className="users-sort-icon"><BsArrowUpDown/></div>
                                </div>
-   
                             </th> ))}
                             <th>ACTION</th>
                         </tr>
                     ))
                 }
             </thead>
-
             <tbody {...getTableBodyProps()}>
                 {
                     page.map(row=>{
                         prepareRow(row)
                         return(
-                            <tr  {...row.getRowProps()}>
-                               
+                            <tr  {...row.getRowProps()}>                          
                                 {row.cells.map((cell)=>{
                                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                 })}
@@ -321,29 +264,21 @@ export default function Users() {
                                     {/* <BsFillEyeFill className="view-user-icon" onClick={()=>{viewUserDetail(row.original._id)}} />&nbsp;  */}
                                     <BsPencilSquare className="edit-user-icon" onClick={()=>{editUser(row.original._id)}}/>&nbsp; 
                                     <BsFillTrashFill className="delete-user-icon" onClick={()=>{deleteuser(row.original._id)}}/>
-                                </td>
-                        
-                               
+                                </td>                                          
                             </tr>
                         )
                     })
-                }
-              
-            </tbody>
-            
-        </table>
-        
+                }        
+            </tbody>      
+        </table>    
        <div className="user-button-container">
             <button onClick={()=>gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
             <button className="user-page-nav" onClick={()=>previousPage()} disabled={!canPreviousPage}>Previous</button>
             <div className="user-current-page">{pageIndex+1}</div>
             <button className="user-page-nav" onClick={()=>nextPage()} disabled={!canNextPage}>Next</button>
             <button onClick={()=>gotoPage(pageCount-1)} disabled={!canNextPage}>{'>>'}</button>
-       </div>
-       
-        
+       </div>      
         </div>
         </div> 
     )
 }
-

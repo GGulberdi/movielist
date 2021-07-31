@@ -1,12 +1,12 @@
-.trailerlist-container {
+.faqlist-container {
   background-color: #181818;
-  margin: 10%;
+  margin: 5%;
 }
-.trailerlist-title {
+.faqlist-title {
   margin-left: 2%;
   padding-top: 2%;
 }
-.hr-trailer {
+.hr-faq {
   height: 1px;
   background-color: black;
   border: none;
@@ -16,11 +16,11 @@
   display: flex;
   justify-content: space-between;
 }
-.trailer-show-bar {
+.faq-show-bar {
   margin-left: 2%;
   font-size: 20px;
 }
-.trailer-show-bar select {
+.faq-show-bar select {
   margin-top: 2%;
   margin-bottom: 10%;
   font-size: 25px;
@@ -31,16 +31,16 @@
   width: 70px;
   padding: 1px;
 }
-.trailer-show-bar select:focus {
+.faq-show-bar select:focus {
   outline: none;
   box-shadow: none;
 }
 
-.trailer-search-bar {
+.faq-search-bar {
   margin-right: 2%;
   font-size: 20px;
 }
-.trailer-search-bar input {
+.faq-search-bar input {
   background-color: #101010;
   color: white;
   border: none;
@@ -48,13 +48,13 @@
   height: 30px;
   width: 200px;
 }
-.trailer-search-bar input:focus {
+.faq-search-bar input:focus {
   outline: none;
   box-shadow: none;
 }
 
 table {
-  border-collapse: separate;
+  /* border-collapse: separate; */
   border-spacing: 0px 15px;
   width: 80%;
   margin-left: 10%;
@@ -67,59 +67,59 @@ table {
   justify-content: center;
   align-items: center;
   /* margin-top: 45%; */
-  height: 100%;
+  height: 105px;
   background-color: #101010;
 }
-.trailers-icon-container {
+.faqs-icon-container {
   display: flex;
 }
-.trailers-sort-icon {
+.faqs-sort-icon {
   margin-left: 3%;
   cursor: pointer;
 }
-.trailers-sort-icon:hover {
+.faqs-sort-icon:hover {
   color: white;
 }
-.view-trailer-icon-rating {
+.view-faq-icon {
   color: #f68a04;
   background-color: rgba(246, 138, 4, 0.2);
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 27px;
 }
 .eyefill-icon {
-  margin-top: 85%;
-  /* margin-right: 75%; */
+  margin-top: 75%;
+  margin-right: 75%;
 }
-.edit-trailer-icon {
+.edit-faq-icon {
   color: #14e788;
   background-color: rgba(20, 231, 136, 0.2);
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
-.delete-trailer-icon {
+.delete-faq-icon {
   color: #e20e02;
   background-color: rgba(226, 14, 2, 0.2);
   padding: 5px;
   border-radius: 4px;
   cursor: pointer;
 }
-.trailer-button-container {
+.faq-button-container {
   display: flex;
   justify-content: center;
   padding-bottom: 4%;
   padding-bottom: 2%;
 }
-.trailer-current-page {
+.faq-current-page {
   min-width: 20px;
   text-align: center;
   font-size: 20px;
   padding: 10px;
   background-color: #e20e02;
 }
-.trailer-page-nav {
+.faq-page-nav {
   min-width: 80px;
 }
 table td,
@@ -157,20 +157,53 @@ table th {
   margin-top: 10px;
   cursor: pointer;
   /* border: solid 1px #e20e02;
-    padding: 10px;
-    border-radius: 50%; */
+  padding: 10px;
+  border-radius: 50%; */
 }
-.rating-detail-container {
+.faq-submit {
+  padding: 6%;
+  background-color: #02e215;
+  text-align: center;
+}
+/* .faq-submit{
+  background-color: #e40f0f;
+  text-align: center;
+
+} */
+/* .faq-block{
+  padding: 2% auto 2% auto;
+} */
+.faq-form-container {
+  background-color: #141414;
   padding: 20px;
-  min-height: 600px;
+  margin-left: 5%;
+  margin-right: 5%;
 }
-.user-rating-container {
+.faq-form-item {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
-.user-rating-container p {
-  margin: 3px;
+.faq-form-item textarea {
+  background-color: #000000;
+  color: white;
+  border: none;
 }
-.back-to-trailers-btn {
+.faq-answer {
+  height: 300px;
+}
+.faq-submit-btn {
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
   margin-top: 3%;
+}
+.faq-select {
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  height: 30px;
+  width: 100px;
+  margin-top: 2%;
 }

@@ -10,10 +10,11 @@ export default function TrailerDetails() {
     const { id } = useParams();
     const [trailer,setTrailer]=useState([])
  useEffect(() => {
-     axios
+     axios 
      .get(`https://movieapp-server.herokuapp.com/trailers/${id}`)
      .then((res)=>{
-         setTrailer(res.data)
+        setTrailer(res.data)
+        
      })
      .catch((err) => {
         console.log(err);
@@ -49,7 +50,7 @@ export default function TrailerDetails() {
                         </span>)} 
                     </h3>   
                     <h3>
-                        Genre:{trailer.genre && trailer.genre.map((item,index)=><span className="trailer-detail-span-item">&nbsp;{item}
+                        Genre:{trailer.genre && trailer.genre.map((item,index)=><span className="trailer-detail-span-item">&nbsp;{item.name}
                         {index < trailer.genre.length-1 ? ', ': null}
                         </span>)} 
                     </h3> 
@@ -69,19 +70,23 @@ export default function TrailerDetails() {
                     </div> 
                     
                   :null}
-                  <div className="trailerdetails-buttons-container">
+                       
+                </div>
+                <div className="media-container">
+                    <div>
+                        <h3>Movie Image</h3>
+                        <img src={trailer.mediaId && trailer.mediaId.url} style={{width:"300px",height:"300px",borderRadius:"4px"}} alt="trailer-img"/>
+                    </div>
+                    <div>
+                        <h3>Banner Image</h3>
+                        <img src={trailer.bannerId && trailer.bannerId.url} style={{width:"300px",height:"300px",borderRadius:"4px"}} alt="banner-img"/>
+                    </div>
+                </div>
+                <div className="trailerdetails-buttons-container">
                     <Link to="/trailers" className="submit-btn back-to-trailers-btn" ><button className="submit-btn back-to-trailers-btn"> Back to Trailer List</button></Link>  
                     {/* <button className="submit-btn edit-trailerdetails-btn">Edit Trailer Details</button> */}
-                  </div>      
-                </div>
-                <div>
-                    <h3>Movie Image</h3>
-                    <img src={trailer.mediaId && trailer.mediaId.url} style={{width:"300px",height:"300px"}} alt="trailer-img"/>
-                </div>
-                <div>
-                    <h3>Banner Image</h3>
-                    <img src={trailer.bannerId && trailer.bannerId.url} style={{width:"300px",height:"300px"}} alt="banner-img"/>
-                </div>      
+                </div> 
+                      
                 </div>         
         </div>
     )

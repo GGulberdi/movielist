@@ -1,4 +1,4 @@
-.trailer {
+.faq {
   display: flex;
   flex-direction: row;
   color: white;
@@ -8,44 +8,42 @@
   flex-direction: row;
   color: white;
 }
-.trailer-icon-right {
-  margin-left: 800%;
+.faq-icon-right {
+  margin-left: 920%;
   margin-top: 50%;
   font-size: 18px;
 }
-.trailer-icon-down {
-  margin-left: 800%;
+.faq-icon-down {
+  margin-left: 920%;
   margin-top: 50%;
   font-size: 18px;
 }
-.addtrailer-container {
+.addfaq-container {
   background-color: #141414;
   min-height: 700px;
   margin: 4%;
   border-radius: 5px;
 }
-.addtrailer-form-container {
+.addfaq-form-container {
   display: flex;
   flex-direction: column;
 }
-.addtrailer-title-text {
+.addfaq-title-text {
+  /* margin-left: 2%; */
+  /* margin-top: 20px; */
   padding: 2%;
   text-align: center;
 }
-.addtrailer-website-text {
-  /* padding: 10px; */
-  text-align: initial;
-  margin-left: 200px;
-}
-.addtrailer-row1 {
+
+.addfaq-row1 {
   display: flex;
   width: 100%;
   position: relative;
 }
-.addtrailer-buttons {
+.addfaq-buttons {
   width: 200px;
-  margin-left: 3.2%;
-  margin-top: 20%;
+  margin-left: 5.2%;
+  margin-top: 10%;
   display: flex;
   justify-content: space-around;
   padding-bottom: 4%;
@@ -54,26 +52,26 @@
   cursor: pointer;
 }
 
-.addtrailer-column1 {
-  height: 850px;
+.addfaq-column1 {
+  height: 600px;
   width: 50%;
   background-color: #141414;
   margin-left: 3%;
   margin-top: 3%;
 }
-.addtrailer-column2 {
-  height: 850px;
+.addfaq-column2 {
+  height: 600px;
   width: 50%;
   background-color: #141414;
   margin-left: 3%;
   margin-top: 3%;
 }
-.trailer-not-visible {
+.faq-not-visible {
   display: none;
   position: absolute-top;
   top: 20px;
 }
-.trailer-visible {
+.faq-visible {
   display: inline-block;
   max-height: 200px;
   position: absolute-top;
@@ -83,13 +81,11 @@
   flex-direction: column;
   /* height: 20px; */
   /* border: none; */
-  /* border-radius: 5px;
-  color: white; */
+  border-radius: 5px;
+  color: white;
 }
-addtrailer-item {
-  text-align: center;
-}
-.addtrailer-item input {
+
+.addfaq-item input {
   width: 95%;
   height: 60px;
   border: none;
@@ -97,8 +93,9 @@ addtrailer-item {
   margin: 2%;
   background-color: #000000;
   color: white;
+  /* text-align: center; */
 }
-.addtrailer-item select {
+.addfaq-item select {
   width: 95%;
   height: 60px;
   border: none;
@@ -106,29 +103,33 @@ addtrailer-item {
   margin: 3% 0.5% 0.5% 26%;
   background-color: #000000;
   color: white;
+  text-align: center;
+}
+.addfaq-item {
+  text-align: center;
 }
 optgroup {
   font-size: 30px;
 }
-.addtrailer-category {
+.addfaq-category {
   display: flex;
   justify-content: center;
   width: 70%;
   margin-left: 120px;
 }
-/* .addtrailer-category {
+.addfaq-category {
   width: 48%;
 }
-.addtrailer-quality {
+.addfaq-quality {
   width: 48%;
-} */
-.trailers {
+}
+.faqs {
   margin: 50px;
   background-color: #141414;
   padding: 10px 0;
   border-radius: 5px;
 }
-.single-trailer {
+.single-faq {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -139,7 +140,7 @@ optgroup {
   color: white;
 }
 
-.trailer-date {
+.faq-date {
   margin-right: 4px;
 }
 
@@ -166,26 +167,12 @@ optgroup {
   height: 100px;
   width: 400px;
 }
-.modal-trailer-container input {
+.modal-faq-container input {
   width: 50%;
   margin-top: 1%;
 }
 
 .form-item input {
-  background-color: rgba(211, 211, 211, 0.6);
-  border: none;
-  height: 40px;
-  border-radius: 5px;
-  /* margin-top: 2%; */
-}
-.form-item select {
-  background-color: rgba(211, 211, 211, 0.6);
-  border: none;
-  height: 40px;
-  border-radius: 5px;
-  /* margin-top: 2%; */
-}
-.form-item option {
   background-color: rgba(211, 211, 211, 0.6);
   border: none;
   height: 40px;
@@ -203,22 +190,22 @@ optgroup {
   border-radius: 5px;
   /* margin-top: 2%; */
 }
-.modal-trailer-container input {
+.modal-faq-container input {
   width: 99%;
 }
 .modal-group-container {
   display: flex;
   justify-content: space-around;
 }
-/* .modal-title-container label {
+.modal-title-container label {
   margin-bottom: 5%;
-} */
-.trailer-update-button-container {
+}
+.faq-update-button-container {
   display: block;
   text-align: center;
   margin-top: 5%;
 }
-.trailer-update-button {
+.faq-update-button {
   margin-left: auto;
   margin-right: auto;
   width: 100px;
@@ -229,41 +216,36 @@ optgroup {
   color: white;
 }
 
-.trailer-detail-span-item {
+.faq-detail-span-item {
   font-size: 15px;
   color: white;
 }
-.trailerdetail-info-container {
+.faqdetail-info-container {
   margin-left: 5%;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  min-height: 800px;
-}
-.media-container {
-  display: flex;
   justify-content: space-around;
 }
-.trailer-detail-span {
+
+.faq-detail-span {
   font-size: 18px;
   color: white;
 }
-.trailerdetail-info-container h3 {
+.faqdetail-info-container h3 {
   color: red;
 }
-.back-to-trailers-btn {
+.back-to-faqs-btn {
   color: white;
   border: none;
   border-radius: 5px;
   height: 40px;
-  width: auto;
+  width: 150px;
 }
-.trailerdetails-buttons-container {
+.faqdetails-buttons-container {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 10%;
+  margin-top: 20%;
 }
-.edit-trailerdetails-btn {
+.edit-faqdetails-btn {
   color: white;
   border: none;
   border-radius: 5px;
@@ -283,16 +265,14 @@ optgroup {
   padding-top: 20%;
 }
 .genre {
-  width: 95%;
-  height: auto;
+  /* width: 95%; */
+  /* height: 60px; */
   border: none;
   border-radius: 5px;
   margin: 2%;
   text-align: center;
   display: flex;
   background-color: #000000;
-  flex-wrap: wrap;
-  padding: 5px;
 }
 .genre input {
   height: 25px;
@@ -301,61 +281,24 @@ optgroup {
 .genre p {
   font-size: large;
   /* margin-left: 2%; */
-  margin: 1% 5% auto 2%;
-}
-.add1 {
-  text-align: center;
-  margin-top: 1%;
-}
-.add {
-  width: 500px;
-  background-color: black;
-  color: white;
-  border: none;
-  height: 60px;
-  border-radius: 7px;
-  justify-items: space-between;
-  /* width: auto; */
+  /* margin: 1% 4% auto 2%;
+  }
+  .add1 {
+    text-align: center;
+    margin-top: 1%;
+  }
+  .add {
+    
+    height: 30px;
+    width: 500px;
+    background-color: black;
+    color: white; 
+    /* width: auto; */
 }
 .add2 {
-  width: 150px;
-  height: 40px;
-  margin-left: 210px;
-  margin-top: 20px;
-  background-color: #e20e02;
-  color: white;
-  border-radius: 4px;
-  border: none;
+  /* margin-left: 27.6%; */
 }
 .add3 {
-  background-color: #e20e02;
+  background-color: red;
   color: white;
-  height: 60px;
-  margin: 5px;
-  border-radius: 4px;
-  border: none;
-}
-.add-website-form {
-  display: flex;
-  justify-content: center;
-}
-.add-website-form input {
-  margin: 5px;
-}
-.add-website-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.genre-input-container {
-  display: flex;
-  width: 30%;
-}
-.genre-input-container input {
-  margin-right: 10px;
-  margin-top: 10px;
-}
-.genre-input-container label {
-  margin-right: 10px;
-  margin-top: 10px;
 }

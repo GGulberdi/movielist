@@ -5,7 +5,7 @@ export const COLUMNS = [
         Header:"PROFILE",
         accessor:"mediaId",
         Cell: ({row})=>{       
-        return <img src={row.original.mediaId.url} alt="profile_img" style={{width:"100px",height:"100px"}}></img>}
+        return <img src={row.original.mediaId.url} alt="profile_img" style={{width:"100px",height:"100px",borderRadius:"4px"}}></img>}
     },
     {
         Header:"NAME",
@@ -32,8 +32,9 @@ export const COLUMNS = [
         Header:"COUNTRY",
         accessor:"country",
         Cell:({row})=>{
-            return row.original.country?row.original.country:'N/A' 
+           return row.original.country ? row.original.country : "NA"
         }
+        
        
     },
     {

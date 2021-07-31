@@ -31,7 +31,7 @@ export default function About() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5005/staticpage/name/About Us")
+      .get("http://localhost:5005/staticpage/name/Privacy Policy")
       .then((res) => {
         setData(res.data.data);
         console.log(res.data.data);

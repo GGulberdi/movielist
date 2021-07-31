@@ -13,7 +13,7 @@ import './table.css'
 Modal.setAppElement('#root');
 
 export default function Trailers() {
-    
+     
     
     const [data,setData]=useState([])
     const [modalIsOpen, setModalIsOpen] = useState(false); 
@@ -32,14 +32,9 @@ export default function Trailers() {
     const [episodeNumber,setEpisodeNumber]=useState('')
     const [trailerUrl,setTrailerUrl]=useState('')
     const [cast,setCast]=useState('')
-    const [genre,setGenre]=useState('')
+    const [genre,setGenre]=useState([])
     const [tags,setTags]=useState('')
-    console.log(genre)
-
-    
-
-
-
+    // const [websiteId,setWebsiteId]=useState([])
 
     const handleSubmit=(trailerId)=>{
         const updatedTrailer={
@@ -48,8 +43,6 @@ export default function Trailers() {
             type,
             year,
             duration,
-            mediaUrl,
-            bannerUrl,
             description,
             ageRestriction,
             totalSeasons,
@@ -89,7 +82,6 @@ export default function Trailers() {
             setCast(res.data.cast)
             setTags(res.data.tags)
             setGenre(res.data.genre)
-            // console.log(res.data.bannerId.url)
         })
         .catch((err) => {
             console.log(err);
@@ -102,7 +94,7 @@ export default function Trailers() {
 
     const deleteTrailer=(trailerId)=>{
         axios
-        .delete(`https://movieapp-server.herokuapp.com/trailers/${trailerId}`)
+        .delete(`http://localhost:5005/trailers/${trailerId}`)
         .then((res) => {
             window.location.reload()
         })   
@@ -244,10 +236,10 @@ export default function Trailers() {
                                         <label>Cast</label>
                                         <input value={cast && cast.map(item=>item)} onChange={(e)=>{setCast(e.target.value.split(','))}}/>
                                     </div>
-                                    <div className="modal-genre-container form-item">
+                                    {/* <div className="modal-genre-container form-item">
                                         <label>Genre</label>
                                         <input value={genre && genre.map(item=>item.name)} onChange={(e)=>{setGenre(e.target.value.split(','))}}/>
-                                    </div>
+                                    </div> */}
                                     <div className="modal-tags-container form-item">
                                         <label>Tags</label>
                                         <input value={tags && tags.map(item=>item)} onChange={(e)=>{setTags(e.target.value.split(','))}}/>
@@ -307,15 +299,20 @@ export default function Trailers() {
                         ))
                     } 
             </select>&nbsp; entries
-           </div>
+
+            </div>
+          
             <div className="trailer-search-bar">
                 Search:&nbsp;&nbsp;
                 <input value={globalFilter || ''}
                 onChange={e=>setGlobalFilter(e.target.value)}
                 />
             </div>
-      </div>
-       {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/>  */}
+            
+
+        </div>
+        
+        {/* <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter}/> */}
         <table {...getTableProps()}>
             <thead>
 
@@ -336,9 +333,10 @@ export default function Trailers() {
                     ))
                 }
             </thead>
+
             <tbody {...getTableBodyProps()}>
                 {
-                    page.map(row=>{
+                    page.map(row=>{ 
                         prepareRow(row)
                         return(
                             <tr  {...row.getRowProps()}>
@@ -348,27 +346,34 @@ export default function Trailers() {
                                 })}
                                 <td className="row-icon-container">
                                     <Link  to={`/trailerdetails/${row.original._id}`}>
-                                       <BsFillEyeFill className="view-trailer-icon eyefill-icon" />&nbsp; 
+                                       <BsFillEyeFill className="view-trailer-icon" />&nbsp; 
                                     </Link>
                                     
                                     <BsPencilSquare className="edit-trailer-icon" onClick={()=>{editTrailer(row.original._id)}}/>&nbsp; 
                                     <BsFillTrashFill className="delete-trailer-icon" onClick={()=>{deleteTrailer(row.original._id)}}/>
                                 </td>
+                        
+                               
                             </tr>
                         )
                     })
                 }
-               </tbody>
-            </table>
-        <div className="trailer-button-container">
+              
+            </tbody>
+            
+        </table>
+        
+       <div className="trailer-button-container">
             <button onClick={()=>gotoPage(0)} disabled={!canPreviousPage}>{'<<'}</button>
             <button className="trailer-page-nav" onClick={()=>previousPage()} disabled={!canPreviousPage}>Previous</button>
             <div className="trailer-current-page">{pageIndex+1}</div>
             <button className="trailer-page-nav" onClick={()=>nextPage()} disabled={!canNextPage}>Next</button>
             <button onClick={()=>gotoPage(pageCount-1)} disabled={!canNextPage}>{'>>'}</button>
        </div>
-       </div>
-       </div> 
+       
+        
+        </div>
+        </div> 
     )
 }
 

@@ -20,7 +20,7 @@ export const COLUMNS = [
         Header:"AUTHOR",
         accessor:"userId",
         Cell:({row})=>{
-            return <span>{row.original.userId.firstname} {row.original.userId.lastname}...</span>  }
+            return row.original.userId ? <span>{row.original.userId.firstname} {row.original.userId.lastname}</span> :null }
     
     },
     {

@@ -10,6 +10,7 @@ import '../../styles/table.css'
 import '../../styles/ratings.css'
 import {Link} from 'react-router-dom' 
 import {COLUMNS} from './RatingTableData' 
+import swal from 'sweetalert';
 
 
 Modal.setAppElement('#root');
@@ -59,20 +60,41 @@ export default function Ratings({apiBaseUrl}) {
       });
   }, [])
 
-  
+  // const deleteComment = (id) => {
+  //   console.log(id)
+  //   axios
+  //     .delete(`${apiBaseUrl}/ratings/${id}`)
+  //     .then((res) => {
+  //       window.location.reload()
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+
+  // } 
   //delete
   const deleteComment = (id) => {
-    console.log(id)
-    axios
-      .delete(`${apiBaseUrl}/ratings/${id}`)
-      .then((res) => {
-        window.location.reload()
+    
+    swal("Are you sure you want to do this?", {
+      buttons: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+            axios.delete(`${apiBaseUrl}/userratings/${id}`)
+    .then((res) => {
+              window.location.reload()
+    
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+          swal("Poof! it has been deleted!", {
+            icon: "success",
+          });
+        }
       })
-      .catch((err) => {
-        console.log(err);
-      });
-
-  } 
+     
+  };
 
 
 
@@ -181,7 +203,7 @@ export default function Ratings({apiBaseUrl}) {
                       </div>
 
                     </th>))}
-                  <th>ACTION</th>
+                  {/* <th>ACTION</th> */}
                 </tr>
               ))
             }
@@ -197,12 +219,12 @@ export default function Ratings({apiBaseUrl}) {
                     {row.cells.map((cell) => {
                       return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     })}
-                    <td className="table-action-icons-wrapper">
+                    {/* <td className="table-action-icons-wrapper">
                      <Link  to={`/ratingdetails/${row.original._id}`}>
                         <BsFillEyeFill className="table-view-icon action-icons" onClick={() => { viewTrailerDetail(row.original._id) }} />&nbsp;
                       </Link>
                       <BsFillTrashFill className="table-delete-icon action-icons" onClick={() => { deleteComment(row.original._id) }} />
-                    </td>
+                    </td> */}
 
 
                   </tr>

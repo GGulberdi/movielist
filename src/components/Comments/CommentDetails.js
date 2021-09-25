@@ -11,9 +11,9 @@ export default function CommentDetails({apiBaseUrl}) {
 
     const { id } = useParams();
     const [data,setData]=useState([])
-    const [firstname,setFirstName]=useState([])
-    const [lastname,setLastName]=useState([])
-   
+    const [firstname,setFirstName]=useState("")
+    const [lastname,setLastName]=useState("")
+    const [movie,setMovie]=useState("")
     
 
     
@@ -21,10 +21,13 @@ export default function CommentDetails({apiBaseUrl}) {
      axios
      .get(`${apiBaseUrl}/comments/${id}`)
      .then((res)=>{
-         console.log(res.data.data)
-         setData(res.data.data)
-         setFirstName(res.data.data.userId.firstname)
-         setLastName(res.data.data.userId.lastname)
+         console.log(res.data.response[0])
+         setData(res.data.response[0])
+       setFirstName(res.data.response[0].userId[0].firstname)
+       setLastName(res.data.response[0].userId[0].lastname)
+       setMovie(res.data.response[0].movieId[0].imdb_rating)
+
+
      })      
      .catch((err) => {
         console.log(err);
@@ -37,15 +40,15 @@ export default function CommentDetails({apiBaseUrl}) {
         <div className="comment-detail-container">
          <div className="comment-detail-wrapper">
                 {!data.isActive?
-            <h2> Comment <span>{data.title}</span> created at <span>{data.createdAt && data.createdAt.slice(0,10)}</span> was blocked. Reason: <span>{data.reasonToBlock}</span></h2> 
+            <h2> Comment for  movie <span>{movie&&movie}</span> was blocked. Reason: <span>{data.reasonToBlock}</span></h2> 
             :null
             }
                 <div>
                     <div className="comment-author-container">
-                            <p>{firstname} {lastname}</p>
+                            <h1>{firstname} {lastname}</h1>
                     </div>
-                        <h2>{data.title}</h2>
-                        <p>{data.content}</p> 
+                        <h6>Comment content</h6>
+                        <h2>{data.content}</h2> 
                 </div>
             
                     <Link to="/commentlist"><button className="submit-button back-to-trailers-btn"> Back to Comment List</button></Link>  

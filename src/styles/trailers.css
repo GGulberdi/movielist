@@ -74,10 +74,16 @@
 .trailer-update-button {
   width: 150px;
 }
+
 /*MODAL EDIT FORM END*/
 
 /*TRAILER DETAIL START*/
 .player-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+  /* width: 850px; */
+}
+.add-player {
   position: relative;
   padding-top: 56.25%;
 }
@@ -88,9 +94,12 @@
 }
 .trailer-detail-summary-container {
   margin: 0 2% 0 2%;
+  width: 1300px;
 }
 .trailer-detail-summary-container p {
   font-size: var(--font-size-lg);
+  margin: 0 3% 0 0;
+  /* text-align: center; */
 }
 .trailer-detail-info-container h3 {
   font-size: var(--title-font-size);
@@ -284,6 +293,90 @@
   padding-top: 20%;
 }
 /* ADD TRAILER END */
+
+/* SEARCH IMDB START */
+.search-imdb-container {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: relative;
+}
+.search-imdb-form-container {
+  height: 200px;
+  width: 45%;
+}
+.search-imdb-info-container {
+  background-color: var(--bg-dark);
+  min-height: 200px;
+  width: 50%;
+  border-radius: 3px;
+  padding: 1px;
+  margin-top: 10px;
+}
+.search-imdb-input {
+  width: 100%;
+  height: 30px;
+  background-color: var(--bg-dark);
+  color: var(--text-color-primary);
+  border: none;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+.search-results-show {
+  position: absolute;
+  left: 22px;
+  top: 63px;
+  height: 200px;
+  width: 43.5%;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  background-color: var(--bg-dark);
+  overflow-y: scroll;
+  color: var(--black-color);
+}
+.each-movie {
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  border-bottom: solid 0.1px var(--bg-light);
+}
+.each-movie img {
+  height: 40px;
+  width: 40px;
+  border-radius: 2px;
+}
+.each-movie p {
+  margin-left: 0.5rem;
+}
+.each-movie:hover {
+  background-color: var(--bg-light);
+  color: var(--white-color);
+}
+.search-results-hide {
+  display: none;
+}
+.not-selected-text {
+  width: 100%;
+  text-align: center;
+}
+.selected-movie-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.trailer-banner-container {
+  margin-top: 10px;
+}
+.trailer-banner-container img {
+  width: 100%;
+  border-radius: 3px;
+}
+.search-submit-button {
+  margin-top: 20px;
+  cursor: pointer;
+}
+/* SEARCH IMDB END */
 
 @media (max-width: 768px) {
   .modal-form {

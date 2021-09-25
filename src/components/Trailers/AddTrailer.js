@@ -5,27 +5,29 @@ import '../../styles/table.css'
 import '../../styles/trailers.css' 
 import Search from './Search'
 
-
-
-
 export default function AddTrailer({apiBaseUrl}) {
+const tmdbBaseUrl = 'https://api.themoviedb.org/3'
+const apiKey = "e15d510497f0c76895f1c76ac17b08d4"
   const history = useHistory();
   const [showItems, setShowItems] = useState("items-not-visible");
   const [movieItems, setMovieItems] = useState("items-visible");
   const [image, setImage] = useState("");
-  const [banner, setBanner] = useState("");
+  const [mediaUrl, setMediaUrl] = useState("");
+
+  // const [banner, setBanner] = useState("");
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
-  const [episodeTitle, setEpisodeTitle] = useState("");
+  // const [episodeTitle, setEpisodeTitle] = useState("");
   const [year, setYear] = useState("");
-  const [duration, setDuration] = useState("");
+  // const [duration, setDuration] = useState("");
   const [description, setDescription] = useState("");
   const [ageRestriction, setAgeRestriction] = useState(""); 
-  const [totalSeasons, setTotalSeasons] = useState("");
-  const [seasonNumber, setSeasonNumber] = useState("");
-  const [episodeNumber, setEpisodeNumber] = useState("");
+  // const [totalSeasons, setTotalSeasons] = useState("");
+  // const [seasonNumber, setSeasonNumber] = useState("");
+  // const [episodeNumber, setEpisodeNumber] = useState("");
   const [trailerUrl, setTrailerUrl] = useState("");
   const [cast, setCast] = useState([]);
+  // const[genres,setGenres]=useState([])
   const [genre, setGenre] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [tags, setTags] = useState([]);
@@ -37,15 +39,17 @@ export default function AddTrailer({apiBaseUrl}) {
   const [director, setDirector] = useState("");
   const [imdb, setImdb] = useState("");
   const [added , setAdded]=useState(false)
+//   const[selectedMovie,setSelectedMovie]=useState('')
+//   const [query,setQuery]=useState('')
+// const [searchResults,setSearchResults]=useState('')
+
   
-
-
-
-
-
+  console.log(selectedGenres);
+console.log(image)
 
   const addMore = () => {
     setNumber((number) => [...number, 1]);
+    setAdded(false)
   };
 
 
@@ -55,61 +59,38 @@ export default function AddTrailer({apiBaseUrl}) {
     setWatchMovie((watchMovie) => [
       ...watchMovie,newLink
     ])
-    // setWatchMovie(watchMovie.push('{ title: watchMovieTitle, link: watchMovieLink }'))
-
+    
+    // window.location.reload();
     setAdded(true)
   };
-
   useEffect(() => {
     // console.log(watchMovie);
   }, [watchMovie]);
 
   useEffect(() => {
     axios
-      .get(`${apiBaseUrl}/categories`)
+      .get(`${tmdbBaseUrl}/genre/movie/list?api_key=${apiKey}&language=en-US`)
       .then((res) => {
-        setGenre(res.data);
-        // console.log(res.data);
+        setGenre(res.data.genres);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-
-//   useEffect(() => {
-//    const fetch =async(val)=>{
-//      await  axios
-//      .get
-//  (`${url}/search/movie?api_key=${apiKey}&query=lion`)
-// // ('https://api.themoviedb.org/3/search/movie?api_key=e15d510497f0c76895f1c76ac17b08d4&query=lion')
-//       .then((res) => {
-//         console.log(res.data.results);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       })};
-//       fetch()
-//   }, [])
-
-
-
-
-
-
-
-
   const selectGenre = (e) => {
-    if (!selectedGenres.includes(e.target.id)) {
-      setSelectedGenres((selectedGenres) => [...selectedGenres, e.target.id]);
+    console.log(e.target.name)
+    if (!selectedGenres.includes(e.target.name)) {
+      setSelectedGenres((selectedGenres) => [...selectedGenres, e.target.name]);
     } else {
-      const index = selectedGenres.indexOf(e.target.id);
+      const index = selectedGenres.indexOf(e.target.name);
       setSelectedGenres(
         selectedGenres.filter((item) => selectedGenres.indexOf(item) !== index)
       );
     }
   };
-
+  
   const handleChange = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -129,17 +110,17 @@ export default function AddTrailer({apiBaseUrl}) {
     e.preventDefault();
     setIsLoading(true);
     const formData = new FormData();
-    formData.append("mediaId", image);
-    formData.append("bannerId", banner);
+    formData.append("mediaUrl", mediaUrl);
+    // formData.append("bannerId", banner);
     formData.append("type", type);
     formData.append("title", title);
-    formData.append("duration", duration);
+    // formData.append("duration", duration);
     formData.append("ageRestriction", ageRestriction);
-    formData.append("totalSeasons", totalSeasons);
+    // formData.append("totalSeasons", totalSeasons);
     formData.append("year", year);
-    formData.append("seasonNumber", seasonNumber);
-    formData.append("episodeTitle", episodeTitle);
-    formData.append("episodeNumber", episodeNumber);
+    // formData.append("seasonNumber", seasonNumber);
+    // formData.append("episodeTitle", episodeTitle);
+    // formData.append("episodeNumber", episodeNumber);
     formData.append("trailerUrl", trailerUrl);
     formData.append("description", description);
     formData.append("director", director);
@@ -147,8 +128,8 @@ export default function AddTrailer({apiBaseUrl}) {
     formData.append("cast", cast);
     formData.append("tags", tags);
     formData.append("genre", JSON.stringify(selectedGenres));
+    // formData.append("genre", selectedGenres);
     formData.append("websiteId", JSON.stringify(watchMovie));
-
     await axios
       .post(`${apiBaseUrl}/trailers`, formData)
       .then((res) => {
@@ -162,17 +143,17 @@ export default function AddTrailer({apiBaseUrl}) {
   const cancelUpload = (e) => {
     e.preventDefault();
     setImage("");
-    setBanner("");
+    // setBanner("");
     setType("");
     setTitle("");
-    setEpisodeTitle("");
+    // setEpisodeTitle("");
     setYear("");
-    setDuration("");
+    // setDuration("");
     setDescription("");
     setAgeRestriction("");
-    setTotalSeasons("");
-    setSeasonNumber("");
-    setEpisodeNumber("");
+    // setTotalSeasons("");
+    // setSeasonNumber("");
+    // setEpisodeNumber("");
     setTrailerUrl("");
     setDirector("");
     setImdb("");
@@ -185,8 +166,8 @@ export default function AddTrailer({apiBaseUrl}) {
           <h1>Add Trailer</h1>
       </div>
 
-<div>
-  <Search/>
+<div style={{minHeight:"300px"}}>
+  <Search apiBaseUrl={apiBaseUrl}/>
 </div>
 
       <div className="add-trailer-website-container">
@@ -198,14 +179,13 @@ export default function AddTrailer({apiBaseUrl}) {
                       return <form onSubmit={addSite} className="add-trailer-add-website-form">
                               <input onChange={(e)=>setwatchMovieTitle(e.target.value)} placeholder="title of the website" className="add-trailer-add-website-form-input"/>
                               <input onChange={(e)=>setwatchMovieLink(e.target.value)}   placeholder="link"/>
-                              <button className="add-trailer-website-button submit-button" type="submit">{added?'Added':'Add'}</button>
+                              <button className="add-trailer-website-button submit-button " type="submit" >{added?'Added':'Add'}</button>
                         </form>
                     })}
-                                        <h1>{watchMovieTitle} </h1> <h1>{watchMovieLink}</h1>
-                                        <h2>{watchMovie}</h2>
           </div>
           <div className="add-trailer-button-container">
              <button className="add-trailer-website-addmore submit-button" onClick={addMore}>Add More Websites</button> 
+             
           </div>
           
       </div>
@@ -233,28 +213,28 @@ export default function AddTrailer({apiBaseUrl}) {
                 <label>Release Year</label>
                 <input value={year} onChange={(e) => setYear(e.target.value)} />
               </div>
-              <div className="add-trailer-item">
+              {/* <div className="add-trailer-item">
                 <label>Duration</label>
                 <input value={duration} onChange={(e) => setDuration(e.target.value)}/>
-              </div>
+              </div> */}
               <div className="add-trailer-item">
                   <label>Movie Image</label>
-                <input type="file" onChange={(e) => {setImage(e.target.files[0]);}}/>
+                <input type="file" onChange={(e) => {setMediaUrl(e.target.files[0]);}}/>
               </div>
-              <div className="add-trailer-item">
+              {/* <div className="add-trailer-item">
                 <label>Movie Banner</label>
                 <input type="file" onChange={(e) => {setBanner(e.target.files[0]);}}/>
-              </div>
+              </div> */}
               <div className="add-trailer-item">
                 <label>Age Restriction</label>
                   <input value={ageRestriction} onChange={(e) => setAgeRestriction(e.target.value)}/>
                 </div>
                   <label>Genre</label>
               <div className="genre-wrapper" >
-                  {genre.map((item) => {
+                  {genre && genre.map((item) => {
                     return (
                       <div className="genre-input-container" onClick={(e) => selectGenre(e)}>
-                        <input type="checkbox" name={item.name}id={item._id}/>
+                        <input type="checkbox" value={item.name} name={item.name + " "}id={item._id}/>
                         <label  htmlFor={item.name}>{item.name}</label>
                       </div>
                     );
@@ -280,26 +260,26 @@ export default function AddTrailer({apiBaseUrl}) {
                   <label>Director</label>
                   <input value={director} onChange={(e) => setDirector(e.target.value)}/>
                 </div>
-                <div className="add-trailer-item">
+                {/* <div className="add-trailer-item">
                   <label>Imdb</label>
                   <input value={imdb} onChange={(e) => setImdb(e.target.value)}/>
-                </div>
-                <div className="add-trailer-item">
+                </div> */}
+                {/* <div className="add-trailer-item">
                   <label>Total Number of Seasons</label>
                   <input value={totalSeasons} onChange={(e) => setTotalSeasons(e.target.value)}/>
-                </div>
-                <div className="add-trailer-item">
+                </div> */}
+                {/* <div className="add-trailer-item">
                   <label>Season Number</label>
                   <input value={seasonNumber} onChange={(e) => setSeasonNumber(e.target.value)}/>
-                </div>
-                <div className="add-trailer-item">
+                </div> */}
+                {/* <div className="add-trailer-item">
                   <label>Episode Title</label>
                   <input value={episodeTitle} onChange={(e) => setEpisodeTitle(e.target.value)}/>
-                </div>
-                <div className="add-trailer-item">
+                </div> */}
+                {/* <div className="add-trailer-item">
                   <label>Episode Number</label>
                   <input value={episodeNumber} onChange={(e) => setEpisodeNumber(e.target.value)}/>
-                </div>
+                </div> */}
                 <div>
                   {isLoading ? (
                     <p className="loading-text">

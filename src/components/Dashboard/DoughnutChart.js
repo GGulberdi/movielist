@@ -29,6 +29,7 @@ export default class DoughnutChart extends React.Component {
         <div className = 'doughnutChart-header' >
           <p className = 'doughnutChart-title' > User's of Product </p> 
         </div>
+        <hr style={{borderColor:"var(--bg-dark)"}}/>
         <div className='doughnutChart-circle'> 
           <Doughnut 
             data={state}

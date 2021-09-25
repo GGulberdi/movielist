@@ -8,6 +8,8 @@ import Modal from 'react-modal';
 import { COLUMNS } from './MessageTableData'
 import '../../styles/table.css'
 import '../../styles/messages.css'
+import swal from 'sweetalert';
+
 
 Modal.setAppElement('#root');
 export default function Messages({apiBaseUrl}) {
@@ -42,17 +44,40 @@ export default function Messages({apiBaseUrl}) {
 
 
 
-    const deleteContact = (messageId) => {
+    // const deleteContact = (messageId) => {
      
-        axios
-            .delete(`${apiBaseUrl}/messages/${messageId}`)
-            .then((res) => {
-                window.location.reload()
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+    //     axios
+    //         .delete(`${apiBaseUrl}/messages/${messageId}`)
+    //         .then((res) => {
+    //             window.location.reload()
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }
+
+    const deleteContact = (messageId) => {
+    
+        swal("Are you sure you want to do this?", {
+          buttons: true,
+        })
+          .then((willDelete) => {
+            if (willDelete) {
+                axios.delete(`${apiBaseUrl}/messages/${messageId}`)
+        .then((res) => {
+                  window.location.reload()
+        
+              })
+              .catch((err) => {
+                  console.log(err);
+              });
+              swal("Poof! it has been deleted!", {
+                icon: "success",
+              });
+            }
+          })
+         
+      };
 
 
     useEffect(() => {

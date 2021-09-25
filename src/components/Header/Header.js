@@ -17,11 +17,11 @@ export default function Header({ isLoggedIn, setIsLoggedIn, apiBaseUrl, url, tok
   const [profileInfoClass, setProfileInfoClass] = useState(false)
   const [messagesIconClass, setMessagesIconClass] = useState(false)
   const [notificationsIconClass, setNotificationsIconClass] = useState(false)
-  const [categoryClassname, setCategoryClassname] = useState(false)
+  // const [categoryClassname, setCategoryClassname] = useState(false)
   const [trailerClassname, setTrailerClassname] = useState(false)
   const [pagesClassname, setPagesClassname] = useState(false)
   const [faqClassname, setFaqClassname] = useState(false)
-  const [categoryArrowClass, setCategoryArrowClass] = useState(true)
+  // const [categoryArrowClass, setCategoryArrowClass] = useState(true)
   const [trailerArrowClass, setTrailerArrowClass] = useState(true)
   const [pagesArrowClass, setPagesArrowClass] = useState(true)
   const [faqArrowClass, setFaqArrowClass] = useState(true)
@@ -55,10 +55,10 @@ const toggleDropdown = (section) => {
         setTrailerClassname(!trailerClassname)
         setTrailerArrowClass(!trailerArrowClass)
         break;
-      case "category":
-        setCategoryClassname(!categoryClassname)
-        setCategoryArrowClass(!categoryArrowClass)
-        break;
+      // case "category":
+      //   setCategoryClassname(!categoryClassname)
+      //   setCategoryArrowClass(!categoryArrowClass)
+      //   break;
       case "faq":
         setFaqClassname(!faqClassname)
         setFaqArrowClass(!faqArrowClass)
@@ -72,8 +72,8 @@ const toggleDropdown = (section) => {
   }
   // const logout = (e) => {
   //   e.preventDefault()
-  //   sessionStorage.removeItem('userinfo')
-  //   sessionStorage.removeItem('token')
+  //   localStorage.removeItem('userinfo')
+  //   localStorage.removeItem('token')
   //   history.push('/signout')
   //   window.location.reload() 
   // }
@@ -86,8 +86,8 @@ const toggleDropdown = (section) => {
     })
     .then((willDelete) => {
       if (willDelete) {
-        sessionStorage.removeItem('userinfo')
-        sessionStorage.removeItem('token')
+        localStorage.removeItem('userinfo')
+        localStorage.removeItem('token')
         history.push('/')
         window.location.reload() 
         swal("You are successfully logged out!!", {
@@ -95,7 +95,6 @@ const toggleDropdown = (section) => {
         });
       } 
     });
-    
   }
   const messgesStatusChangeHandle = (id) => {
     history.push(`/singlemessage/${id}`)
@@ -121,7 +120,7 @@ const toggleDropdown = (section) => {
           .catch(err => { console.log(err) })  
   }
   useEffect(() => {
-    setAdminInfo(JSON.parse(sessionStorage.getItem('userinfo')))
+    setAdminInfo(JSON.parse(localStorage.getItem('userinfo')))
   }, [])
   useEffect(() => {
     axios
@@ -206,7 +205,7 @@ const toggleDropdown = (section) => {
         <div className="menu-item"><a href="/userlist"> <BsFillPeopleFill /> User</a></div>
         <div className="menu-item"><a href="/lists"> <MdViewList /> Lists</a></div>
         <div className="menu-item"> <RiContactsBookLine /> <a href="/messages">&nbsp;Messages</a></div>
-        <div className="menu-item" onClick={(e) => { toggleDropdown("category") }} >
+        {/* <div className="menu-item" onClick={(e) => { toggleDropdown("category") }} >
           <div><BsCardList /> Category</div>
           <div>
             <BsChevronRight className={categoryArrowClass === true ? "sidebar-right-arrow" : "sidebar-down-arrow"} onClick={(e) => { toggleDropdown("category") }} />
@@ -215,7 +214,7 @@ const toggleDropdown = (section) => {
         <div className={categoryClassname === false ? "dropdown-closed" : "dropdown-open"}>
           <div className="dropdown-item"><BsFillPlusSquareFill /> <a href="/addcategory">Add Category</a></div>
           <div className="dropdown-item"> <BsFillEyeFill /> <a href="/categories"> Category List</a></div>
-        </div>
+        </div> */}
         <div className="menu-item" onClick={(e) => { toggleDropdown("faq") }}>
           <div> <BsQuestionSquare /> Faq</div>
           <div>

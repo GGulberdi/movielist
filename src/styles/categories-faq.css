@@ -1,6 +1,6 @@
 /* MODAL EDIT START*/
 .categories-faq-modal-content {
-  height: 460px;
+  height: 500px;
   background-color: var(--bg-dark);
   border: none;
   width: 60%;
@@ -59,7 +59,7 @@
   color: var(--text-color-primary);
 }
 .categories-faq-modal-container select {
-  height: 30px;
+  height: 35px;
   width: 20%;
 }
 .categories-faq-modal-container textarea {

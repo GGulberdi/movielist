@@ -65,9 +65,25 @@
   width: 50%;
   color: var(--text-color-primary);
   margin-left: 2%;
+  margin-top: 4%;
+}
+.users-modal-role-container label {
+  color: var(--button-red);
+}
+.users-modal-role-container select {
+  background-color: var(--text-color-secondary);
+  border: none;
+  height: 20px;
+  padding: 1%;
+  border-radius: 5px;
+  width: 50%;
+  color: var(--text-color-primary);
+  margin-left: 2%;
+  margin-top: 1%;
 }
 .users-update-button {
   width: 150px;
+  margin-top: 3%;
 }
 
 /* MODAL EDIT END*/

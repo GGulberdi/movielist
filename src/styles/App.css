@@ -49,7 +49,7 @@ a {
   display: flex;
   justify-content: center;
   min-width: 100vh;
-  overflow: scroll;
+  /* overflow: scroll; */
   margin-top: var(--header-height);
   margin-left: var(--sidebar-width);
 }

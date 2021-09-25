@@ -35,7 +35,7 @@ export const COLUMNS = [
       Header: 'RATING',
       accessor: 'userRating',
       Cell:({row})=>{
-        return row.original.userRating.length !==0 ? ((row.original.userRating.reduce((a,b)=> (a*1+b*1))/4+row.original.imdb*1)/2).toFixed(1) : null
+        return row.original.userRating && row.original.userRating.length !==0 ? ((row.original.userRating.reduce((a,b)=> (a*1+b*1))/row.original.userRating.length + row.original.imdb*1)/2).toFixed(1) : null
      }
      
     },

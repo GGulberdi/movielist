@@ -9,18 +9,18 @@ export const COLUMNS = [
             return<div>{row.index+1}</div>
         }
     },
-    {
-        Header:"TITLE",
-        accessor:"title",
-        // Cell:({row})=>{
-        //     return row.original.email.slice(0,1).toUpperCase() + row.original.email.slice(1)
-        //  }
-    },
+    // {
+    //     Header:"TITLE",
+    //     accessor:"title",
+    //     // Cell:({row})=>{
+    //     //     return row.original.email.slice(0,1).toUpperCase() + row.original.email.slice(1)
+    //     //  }
+    // },
     {
         Header:"AUTHOR",
         accessor:"userId",
         Cell:({row})=>{
-            return row.original.userId ? <span>{row.original.userId.firstname} {row.original.userId.lastname}</span> :null }
+            return row.original.userId ? <span>{row.original.userId[0].firstname} {row.original.userId[0].lastname}</span> :null }
     
     },
     {
@@ -41,9 +41,9 @@ export const COLUMNS = [
     {
         Header:"CREATED DATE", 
         accessor:"createdAt",
-          Cell:({row})=>{
-           return <span>{row.original.createdAt.slice(0,10)}</span>
-        }
+        //   Cell:({row})=>{
+        //    return <span>{row.original.createdAt.slice(0,10)}</span>
+        // }
     }
     
 ]

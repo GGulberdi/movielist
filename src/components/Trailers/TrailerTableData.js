@@ -1,12 +1,12 @@
 
 export const COLUMNS = [
 
-    // {
-    //     Header:"BANNER",
-    //     accessor:"mediaId",
-    //     Cell: ({row})=>{       
-    //     return <img src={row.original.bannerId.url} alt="trailer_img" style={{width:"80px",height:"80px",margin:"2px"}}></img>}
-    // },
+    {
+        Header:"BANNER",
+        accessor:"mediaUrl",
+        Cell: ({row})=>{       
+        return <img src={row.original.mediaUrl} alt="trailer_img" style={{width:"80px",height:"80px",margin:"2px"}}></img>}
+    },
     {
         Header:"TITLE",
         accessor:"title"
@@ -22,10 +22,14 @@ export const COLUMNS = [
     {
         Header:"GENRE",
         accessor:"genre",
-        Cell:({row})=>{
-           return row.original.genre.map(item=>item.name + ' ')
-        }
+        // Cell:({row})=>{
+        //    return  row.original.genre.map(item=>item + ' ')
+        // }
        
+    },
+    {
+        Header:"DIRECTOR",
+        accessor:"director", 
     },
     {
         Header:"DESCRIPTION", 

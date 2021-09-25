@@ -23,7 +23,7 @@ export default function RecentView({apiBaseUrl}) {
 			.get(`${apiBaseUrl}/trailers`)
 			.then((res) => {
 				setData(res.data.response);
-            console.log(res.data.response)
+            // console.log(res.data.response)
 
 			})
 			.catch((err) => {
@@ -109,7 +109,7 @@ export default function RecentView({apiBaseUrl}) {
                                                 <div className="table-sort-icon"><BsArrowUpDown/></div>
                                             </div>
                                     </th> ))}
-                                    <th>ACTION</th>  
+                                    {/* <th>ACTION</th>   */}
                                 </tr>
                             ))
                         }
@@ -124,13 +124,13 @@ export default function RecentView({apiBaseUrl}) {
                                             {row.cells.map((cell)=>{
                                                 return <td  {...cell.getCellProps()}>{cell.render('Cell')}</td>
                                             })}
-                                            <td className="table-action-icons-wrapper">
+                                            {/* <td className="table-action-icons-wrapper">
                                                 <Link  to={`/trailerdetails/${row.original._id}`}>
                                                     <BsFillEyeFill to={`/commentdetails/${row.original._id}`} className="table-view-icon action-icons" />&nbsp; 
                                                 </Link>
                                                 <BsPencilSquare className="table-edit-icon action-icons" />&nbsp; 
-                                                <BsFillTrashFill className="table-delete-icon action-icons" />
-                                            </td>
+                                                <BsFillTrashFill className="table-delete-icon action-icons" />&nbsp;
+                                            </td> */}
                                         </tr>
                                 )
                             })

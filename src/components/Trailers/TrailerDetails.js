@@ -9,12 +9,13 @@ export default function TrailerDetails({apiBaseUrl}) {
     
     const { id } = useParams();
     const [trailer,setTrailer]=useState([])
+    console.log(trailer)
  useEffect(() => {
      axios 
      .get(`${apiBaseUrl}/trailers/${id}`)
      .then((res)=>{
         setTrailer(res.data)
-        
+        console.log(res.data)
      })
      .catch((err) => {
         console.log(err);
@@ -22,7 +23,7 @@ export default function TrailerDetails({apiBaseUrl}) {
  }, [])
     return (
         <div className="component-wrapper"> 
-            <div className="player-wrapper">
+            <div className="player-wrapper add-player" >
                 <ReactPlayer 
                     url={trailer.trailerUrl}
                     width="100%"
@@ -50,7 +51,7 @@ export default function TrailerDetails({apiBaseUrl}) {
                         </span>)} 
                     </h3>   
                     <h3>
-                        Genre:{trailer.genre && trailer.genre.map((item,index)=><span className="trailer-detail-info-span">&nbsp;{item.name}
+                        Genre:{trailer.genre && trailer.genre.map((item,index)=><span className="trailer-detail-info-span" value={item}>&nbsp;{item}
                         {index < trailer.genre.length-1 ? ', ': null}
                         </span>)} 
                     </h3> 
@@ -74,14 +75,16 @@ export default function TrailerDetails({apiBaseUrl}) {
                 </div>
                 <div className="media-container">
                     <div>
-                        <h3>Movie Image</h3>
-                        <img className="trailer-images" src={trailer.mediaId && trailer.mediaId.url}  alt="trailer-img"/>
+                        <h3 style={{textAlign:'center'}}>Movie Image</h3>
+                        <img className="trailer-images" src={trailer.mediaUrl}  alt="trailer-img"/>
                     </div>
-                    <div>
+                    {/* <div>
                         <h3>Banner Image</h3>
-                        <img className="trailer-images" src={trailer.bannerId && trailer.bannerId.url} alt="banner-img"/>
-                    </div>
+                        <img className="trailer-images" src={trailer.trailerUrl} alt="banner-img"/>
+                    </div> */}
                 </div>
+                <br />
+                <br />
                 <div className="trailer-detail-buttons-container">
                     <Link to="/trailers"><button className="submit-button back-to-trailers-button"> Back to Trailer List</button></Link>
                 </div> 

@@ -7,7 +7,8 @@ import Modal from 'react-modal';
 import {COLUMNS} from './CategoryTableData'
 import '../../styles/categories-faq.css'
 import '../../styles/table.css'
- 
+import swal from 'sweetalert';
+
 
 Modal.setAppElement('#root');
 
@@ -60,6 +61,9 @@ export default function Categories({apiBaseUrl}) {
     const deleteCategory=(categoryId)=>{
         axios
         .delete(`${apiBaseUrl}/categories/${categoryId}`)
+        // swal("Are you sure you want to do this?", {
+        //     buttons: ["Oh noez!", true],
+        //   })
         .then((res) => {
             window.location.reload()
         })   
@@ -69,6 +73,7 @@ export default function Categories({apiBaseUrl}) {
        
     }
 
+    
 
     useEffect(() => {
         axios

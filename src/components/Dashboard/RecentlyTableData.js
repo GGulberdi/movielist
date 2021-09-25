@@ -1,12 +1,12 @@
 
 export const COLUMNS = [
 
-    // {
-    //     Header:"BANNER",
-    //     accessor:"mediaId",
-    //     // Cell: ({row})=>{       
-    //     // return <img src={row.original.bannerId.url} alt="trailer_img" style={{width:"100px",height:"100px"}}></img>}
-    // },
+    {
+        Header:"BANNER",
+        accessor:"mediaId",
+        Cell: ({row})=>{       
+        return <img src={row.original.mediaUrl} alt="trailer_img" style={{width:"100px",height:"100px"}}></img>}
+    },
     {
         Header:"MOVIE",
         accessor:"title"
@@ -14,15 +14,15 @@ export const COLUMNS = [
     {
         Header:"RATING",
         accessor: 'userRating',
-    //     Cell:({row})=>{
-    //       return row.original.userRating.length !==0 ? ((row.original.userRating.reduce((a,b)=> (a*1+b*1))/4+row.original.imdb*1)/2).toFixed(1) : null
-    //    }
+        Cell:({row})=>{
+          return row.original.userRating && row.original.userRating.length !==0 ? ((row.original.userRating.reduce((a,b)=> (a*1+b*1))/4+row.original.imdb*1)/2).toFixed(1) : null
+       }
     },
     {
         Header:"CATEGORY",
         accessor:"genre",
         Cell:({row})=>{
-           return row.original.genre.map(item=>item.name + ' ')
+           return row.original.genre.map(item=>item + ' ')
         }
        
     },

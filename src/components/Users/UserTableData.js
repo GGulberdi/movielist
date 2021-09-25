@@ -5,7 +5,7 @@ export const COLUMNS = [
         Header:"PROFILE",
         accessor:"mediaId",
         Cell: ({row})=>{       
-        return <img src={row.original.mediaId.url} alt="profile_img" style={{width:"100px",height:"100px",borderRadius:"4px"}}></img>}
+        return <img src={row.original.mediaId[0].url} alt="profile_img" style={{width:"100px",height:"100px",borderRadius:"4px"}}></img>}
     },
     {
         Header:"NAME",
@@ -13,7 +13,7 @@ export const COLUMNS = [
         Cell:({row})=>{
             return <span>{row.original.firstname} {row.original.lastname}</span>  }
     
-    },
+    },  
     // {
     //     Header:"CONTACT",
     //     accessor:"contact",
@@ -24,9 +24,9 @@ export const COLUMNS = [
     {
         Header:"EMAIL",
         accessor:"email",
-        // Cell:({row})=>{
-        //     return row.original.email.slice(0,1).toUpperCase() + row.original.email.slice(1)
-        //  }
+        Cell:({row})=>{
+            return row.original.email.slice(0,1).toUpperCase() + row.original.email.slice(1)
+         }
     },
     {
         Header:"COUNTRY",
@@ -42,6 +42,13 @@ export const COLUMNS = [
         accessor:"isActive",
         Cell:({row})=>{
             return row.original.isActive === true ? <span>Active</span> : <span>Block</span>
+        }
+    },
+    {
+        Header:"ROLE",
+        accessor:"role",
+        Cell:({row})=>{
+            return row.original.role === 'user' ? <span>User</span> : row.original.role === 'admin' ? <span>Admin</span> : <span>Super Admin</span>
         }
     },
     {

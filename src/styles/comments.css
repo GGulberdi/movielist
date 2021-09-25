@@ -1,6 +1,6 @@
 .comment-detail-container {
   background-color: var(--bg-dark);
-  width: fit-content;
+  width: 80%;
   color: var(--text-color-primary);
   min-height: 90vh;
 }
@@ -12,10 +12,14 @@
 
 .comment-detail-wrapper {
   background-color: var(--bg-medium);
-  width: 90%;
+  width: 87%;
   text-align: center;
   margin: 5%;
   padding: 1%;
+  height: 40vh;
+}
+.comment-author-container {
+  margin-top: 7%;
 }
 .comment-detail-wrapper span {
   color: var(--button-red);

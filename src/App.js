@@ -17,18 +17,19 @@ import Users from './components/Users/Users';
 import Messages from './components/Messages/Messages';
 import MessageDetails from './components/Messages/MessageDetails';
 import Ratings from './components/Rating/Ratings';
-import Categories from './components/Categories/Categories';
+// import Categories from './components/Categories/Categories';
 import Faqs from './components/Faq/Faq';
 import About from './components/Pages/About';
 import Privacy from './components/Pages/Privacy';
 import Terms from './components/Pages/Terms';
 import ContactInfo from './components/Pages/ContactInfo';
 import AddFaq from './components/Faq/AddFaq';
-import AddCategory from './components/Categories/AddCategory';
+// import AddCategory from './components/Categories/AddCategory';
 import CommentDetails from './components/Comments/CommentDetails';
 import Signout from './components/Auth/Signout';
 import List from './components/List/List';
 import ListDetails from './components/List/ListDetails';
+import Search from './components/Trailers/Search';
 
 
 
@@ -38,8 +39,8 @@ function App() {
  const [url,setUrl]=useState('')
  const [token,setToken]=useState('')
  useEffect(() => {
-     setToken(JSON.parse(sessionStorage.getItem('token')))
-	 setUrl(JSON.parse(sessionStorage.getItem('url')))
+     setToken(JSON.parse(localStorage.getItem('token')))
+	 setUrl(JSON.parse(localStorage.getItem('url')))
  }, [])
   return ( 
     <div className="App">
@@ -98,10 +99,10 @@ function App() {
 				         exact path="/ratings"
 				         render={() => <Ratings apiBaseUrl={apiBaseUrl}/>}
 				        />
-				<Route
+				{/* <Route
 				         exact path="/categories"
 				         render={() => <Categories apiBaseUrl={apiBaseUrl}/>}
-				        />
+				        /> */}
 				<Route
 				         exact path="/lists"
 				         render={() => <List apiBaseUrl={apiBaseUrl}/>}
@@ -110,10 +111,10 @@ function App() {
 				         exact path="/listdetails/:id"
 				         render={() => <ListDetails apiBaseUrl={apiBaseUrl}/>}
 				        />
-				<Route
+				{/* <Route
 				         exact path="/addcategory"
 				         render={() => <AddCategory apiBaseUrl={apiBaseUrl}/>}
-				        />
+				        /> */}
 				<Route
 				         exact path="/faqs"
 				         render={() => <Faqs apiBaseUrl={apiBaseUrl}/>}
@@ -138,6 +139,10 @@ function App() {
 						exact path="/contactinfo"
 						render={() => <ContactInfo apiBaseUrl={apiBaseUrl}/>}
 						/>
+				{/* <Route
+						exact path="/search"
+						render={() => <Search apiBaseUrl={apiBaseUrl}/>}
+						/> */}
               </div> 
 			  
           </Switch>

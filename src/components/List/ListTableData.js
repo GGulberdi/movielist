@@ -5,7 +5,7 @@ export const COLUMNS = [
         Header:"USER",
         accessor:"userId",
         Cell: ({row})=>{       
-            return <span>{row.original.userId.firstname} {row.original.userId.lastname}</span>  }
+            return <span>{row.original.userId[0].firstname} {row.original.userId[0].lastname}</span>  }
     },
     {
         Header:"LIST NAME",
@@ -38,12 +38,19 @@ export const COLUMNS = [
     },
     
     {
-        Header:"STATUS",
+        Header:"PRIVACY",
         accessor:"isPublic",
         Cell: ({row})=>{       
             return <span>{row.original.isPublic === true? 'PUBLIC' : 'PRIVATE'}</span>  
 
          }
+    },
+    {
+        Header:"STATUS",
+        accessor:"isActive",
+           Cell:({row})=>{
+           return row.original.isActive === true ? <span>Active</span> : <span>Block</span>;
+        }
     },
    
 

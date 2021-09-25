@@ -14,9 +14,9 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
         email,password})
     .then (res=>{
         if(res.data.status && res.data.role==="admin"){
-            sessionStorage.setItem('token', JSON.stringify(res.data.token))
-            sessionStorage.setItem('userinfo', JSON.stringify(res.data))
-            sessionStorage.setItem('url', JSON.stringify(res.data.mediaId.url))
+            localStorage.setItem('token', JSON.stringify(res.data.token))
+            localStorage.setItem('userinfo', JSON.stringify(res.data))
+            localStorage.setItem('url', JSON.stringify(res.data.mediaId.url))
             setIsLoggedIn(true)
             console.log(res.data)
             history.push('/dashboard')  
@@ -28,7 +28,7 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
                 icon: "warning",
                 button: "OK",
                });
-            return
+            return 
         }         
     })
     .catch(err=>console.log(err))
@@ -37,7 +37,7 @@ export default function Signin({isLoggedIn,setIsLoggedIn,apiBaseUrl,setUrl,token
         <div className="signin-form-container">
             {
                 isLoggedIn || token
-                ? <div className="already-loggedin-text"></div>
+                ? <div className="already-loggedin-text">You have already logged in.</div>
                 : <form onSubmit={handleSubmit} className="signin-form">
                         <div className="signin-form-title">SIGN IN</div>
                         <div className="signin-form-email">
